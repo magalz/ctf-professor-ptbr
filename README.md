@@ -82,7 +82,7 @@ Diferente de ferramentas que resolvem desafios automaticamente, este sistema se 
 
 #### Pre-requisitos
 
-- [Antigravity IDE](https://antigravity.im) (recomendado), [VS Code](https://code.visualstudio.com/) ou [Cursor](https://cursor.sh/)
+- [Antigravity IDE](https://antigravity.google) (recomendado), [VS Code](https://code.visualstudio.com/) ou [Cursor](https://cursor.sh/)
 - Git instalado e configurado
 - (Opcional) Python 3.8+ para o script `classify.py`
 - (Opcional) Ferramentas CTF: `pwntools`, `Ghidra`, `Wireshark`, `Volatility 3`, etc. — o sistema guia voce sobre o que e necessario por desafio
@@ -91,7 +91,7 @@ Diferente de ferramentas que resolvem desafios automaticamente, este sistema se 
 
 O Antigravity suporta nativamente a estrutura `.agent/`. Skills, agentes e workflows sao carregados automaticamente.
 
-1. **Instale o Antigravity IDE** em [antigravity.im](https://antigravity.im):
+1. **Instale o Antigravity IDE** em [antigravity.im](https://antigravity.google):
    - Windows: Baixe o instalador `.exe` e execute o wizard
    - macOS: Baixe o `.dmg` e arraste para Aplicativos
    - Linux: Siga as instrucoes do gerenciador de pacotes no site
@@ -316,7 +316,7 @@ Every CTF session follows a structured 7-phase learning cycle:
 
 #### Prerequisites
 
-- [Antigravity IDE](https://antigravity.im) (recommended), [VS Code](https://code.visualstudio.com/), or [Cursor](https://cursor.sh/)
+- [Antigravity IDE](https://antigravity.google) (recommended), [VS Code](https://code.visualstudio.com/), or [Cursor](https://cursor.sh/)
 - Git installed and configured
 - (Optional) Python 3.8+ for the `classify.py` helper script
 - (Optional) CTF tools: `pwntools`, `Ghidra`, `Wireshark`, `Volatility 3`, `hashcat`, etc. — the system will guide you on what's needed per challenge
@@ -325,7 +325,7 @@ Every CTF session follows a structured 7-phase learning cycle:
 
 Antigravity natively supports the `.agent/` folder structure. Skills, agents, and workflows are loaded automatically.
 
-1. **Install Antigravity IDE** from [antigravity.im](https://antigravity.im):
+1. **Install Antigravity IDE** from [antigravity.im](https://antigravity.google):
    - Windows: Download `.exe` installer, run setup wizard
    - macOS: Download `.dmg`, drag to Applications
    - Linux: Follow the package manager instructions on the website
