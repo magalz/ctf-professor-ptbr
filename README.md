@@ -137,33 +137,144 @@ Every CTF session follows a structured 7-phase learning cycle:
 └── SECURITY.md          # Security policies
 ```
 
-### Quick Start
+### Installation Guide
 
-1. **Clone the repository**:
+#### Prerequisites
+
+- [Antigravity IDE](https://antigravity.im) (recommended), [VS Code](https://code.visualstudio.com/), or [Cursor](https://cursor.sh/)
+- Git installed and configured
+- (Optional) Python 3.8+ for the `classify.py` helper script
+- (Optional) CTF tools: `pwntools`, `Ghidra`, `Wireshark`, `Volatility 3`, `hashcat`, etc. — the system will guide you on what's needed per challenge
+
+#### Method 1: Antigravity IDE (Recommended)
+
+Antigravity natively supports the `.agent/` folder structure. Skills, agents, and workflows are loaded automatically.
+
+1. **Install Antigravity IDE** from [antigravity.im](https://antigravity.im):
+   - Windows: Download `.exe` installer, run setup wizard
+   - macOS: Download `.dmg`, drag to Applications
+   - Linux: Follow the package manager instructions on the website
+
+2. **Sign in** with your Google account on first launch
+
+3. **Clone and open the project**:
    ```bash
    git clone https://github.com/magalz/agentes-ctf.git
-   cd agentes-ctf
+   ```
+   Then open the `agentes-ctf` folder in Antigravity: `File > Open Folder`
+
+4. **Done!** Antigravity auto-detects the `.agent/` directory. All 18 agents, 28 skills, and 13 workflows are available immediately. Type `/start-ctf` in the chat to begin.
+
+#### Method 2: VS Code with Gemini Code Assist
+
+1. **Install VS Code** from [code.visualstudio.com](https://code.visualstudio.com/)
+
+2. **Install the Gemini Code Assist extension**:
+   - Open VS Code
+   - Go to Extensions (`Ctrl+Shift+X`)
+   - Search for "Gemini Code Assist" and install it
+   - Sign in with your Google account
+
+3. **Clone and open the project**:
+   ```bash
+   git clone https://github.com/magalz/agentes-ctf.git
+   code agentes-ctf
    ```
 
-2. **Start a CTF session** (supports multiple input modes):
-   ```
-   /start-ctf
-   /start-ctf SQL injection on a login page
-   /start-ctf [attach screenshot + binary file]
-   /start-ctf web http://10.10.10.10
-   /start-ctf pwn vulnerable_binary
-   ```
+4. **Verify**: Open the Gemini chat panel. The `.agent/` folder is auto-detected. Type `/start-ctf` to test.
 
-3. **When stuck**, ask for a hint:
-   ```
-   /hint
-   ```
+#### Method 3: Manual Integration (any AI coding tool)
 
-4. **Learn about any vulnerability**:
-   ```
-   /explain-vulnerability buffer overflow
-   /explain-vulnerability SQL Injection
-   ```
+If your tool supports a `.agent/` or `.agents/` directory with markdown-based agent/skill/workflow definitions:
+
+```bash
+git clone https://github.com/magalz/agentes-ctf.git
+cd agentes-ctf
+# The .agent/ folder contains everything — point your tool's workspace here
+```
+
+---
+
+### Usage Guide
+
+#### Starting a CTF Session
+
+The `/start-ctf` command supports 3 input modes:
+
+```
+# Mode A: Bare — the system will ask for details
+/start-ctf
+
+# Mode B: Text + files — describe the challenge and attach files
+/start-ctf SQL injection on a login page with MySQL backend
+# (attach source files or challenge artifacts)
+
+# Mode C: Image + files — attach a screenshot of the challenge
+/start-ctf
+# (attach challenge screenshot + binary/source files)
+```
+
+The system will automatically:
+1. Detect your language (EN or PT-BR)
+2. Invoke the `challenge-classifier` to categorize the challenge
+3. Route to the appropriate specialist agent
+4. Begin the guided learning cycle
+
+#### All Slash Commands
+
+| Command | What It Does | Example |
+|:---|:---|:---|
+| `/start-ctf` | Begin a CTF learning session | `/start-ctf buffer overflow in ELF binary` |
+| `/hint` | Get a progressive hint (3 tiers) | `/hint` |
+| `/classify-challenge` | Classify without solving | `/classify-challenge` + attach file |
+| `/analyze-binary` | Deep binary analysis | `/analyze-binary` + attach binary |
+| `/explain-vulnerability` | Learn about any vulnerability | `/explain-vulnerability SSRF` |
+| `/threat-model` | STRIDE threat model after solving | `/threat-model` |
+| `/replay-exploit` | Test your retention | `/replay-exploit` |
+| `/debug-exploit` | Debug a failing exploit | `/debug-exploit` |
+| `/writeup` | Generate a pedagogical report | `/writeup` |
+
+#### Session Flow Example
+
+```
+You:    /start-ctf I have a web challenge with a login form
+Agent:  [Detects language: EN]
+Agent:  [Classifier: Web Exploitation > SQLi > Blind/Error-based]
+Agent:  "Let's start with reconnaissance. What do you see when you
+         view the page source?"
+
+You:    There's a PHP form posting to login.php
+Agent:  "Good. Before using any tool, try submitting a single quote
+         in the username field. What happens?"
+
+You:    I get a MySQL error!
+Agent:  "Excellent — that confirms error-based SQLi. Can you explain
+         WHY the server showed that error?"
+
+...     [Guided exploitation with Socratic gates]
+
+You:    Got the flag! FLAG{sql_1nj3ct10n_m4st3r}
+Agent:  "Well done. Now let's understand the real-world impact.
+         Use /threat-model to analyze this vulnerability, or
+         /writeup to document what you learned."
+```
+
+#### Helper Script: classify.py
+
+For quick offline classification:
+
+```bash
+# Classify by description
+python .agent/skills/ctf-challenge-classifier/scripts/classify.py \
+  -d "SQL injection on PHP login page"
+
+# Classify a file
+python .agent/skills/ctf-challenge-classifier/scripts/classify.py binary.elf
+
+# Both
+python .agent/skills/ctf-challenge-classifier/scripts/classify.py binary.elf \
+  -d "200 points, pwn category"
+```
 
 ### CTF Categories Supported
 
@@ -238,25 +349,116 @@ Diferente de ferramentas que resolvem desafios automaticamente, este sistema se 
 | `/threat-model` | Modelo de ameacas STRIDE pos-captura |
 | `/replay-exploit` | Teste de retencao - reproduzir e explicar |
 
-### Como Comecar
+### Guia de Instalacao
 
-1. **Clone o repositorio**:
+#### Pre-requisitos
+
+- [Antigravity IDE](https://antigravity.im) (recomendado), [VS Code](https://code.visualstudio.com/) ou [Cursor](https://cursor.sh/)
+- Git instalado e configurado
+- (Opcional) Python 3.8+ para o script `classify.py`
+- (Opcional) Ferramentas CTF: `pwntools`, `Ghidra`, `Wireshark`, `Volatility 3`, etc. — o sistema guia voce sobre o que e necessario por desafio
+
+#### Metodo 1: Antigravity IDE (Recomendado)
+
+O Antigravity suporta nativamente a estrutura `.agent/`. Skills, agentes e workflows sao carregados automaticamente.
+
+1. **Instale o Antigravity IDE** em [antigravity.im](https://antigravity.im):
+   - Windows: Baixe o instalador `.exe` e execute o wizard
+   - macOS: Baixe o `.dmg` e arraste para Aplicativos
+   - Linux: Siga as instrucoes do gerenciador de pacotes no site
+
+2. **Faca login** com sua conta Google no primeiro uso
+
+3. **Clone e abra o projeto**:
    ```bash
    git clone https://github.com/magalz/agentes-ctf.git
-   cd agentes-ctf
    ```
+   Abra a pasta `agentes-ctf` no Antigravity: `File > Open Folder`
 
-2. **Inicie uma sessao CTF**:
-   ```
-   /start-ctf
-   /start-ctf Injecao SQL em pagina de login
-   /start-ctf pwn binario_vulneravel
-   ```
+4. **Pronto!** O Antigravity detecta o diretorio `.agent/` automaticamente. Todos os 18 agentes, 28 skills e 13 workflows ficam disponiveis. Digite `/start-ctf` no chat para comecar.
 
-3. **Quando travar**, peca uma dica:
+#### Metodo 2: VS Code com Gemini Code Assist
+
+1. **Instale o VS Code** em [code.visualstudio.com](https://code.visualstudio.com/)
+2. **Instale a extensao Gemini Code Assist**: Extensions (`Ctrl+Shift+X`) > busque "Gemini Code Assist" > Sign in
+3. **Clone e abra**:
+   ```bash
+   git clone https://github.com/magalz/agentes-ctf.git
+   code agentes-ctf
    ```
-   /hint
-   ```
+4. **Verifique**: Abra o painel Gemini e digite `/start-ctf` para testar.
+
+#### Metodo 3: Integracao Manual
+
+```bash
+git clone https://github.com/magalz/agentes-ctf.git
+cd agentes-ctf
+# A pasta .agent/ contem tudo — aponte seu workspace aqui
+```
+
+---
+
+### Guia de Uso
+
+#### Iniciando uma Sessao CTF
+
+```
+# Modo A: Vazio — o sistema vai pedir detalhes
+/start-ctf
+
+# Modo B: Texto + arquivos — descreva o desafio e anexe arquivos
+/start-ctf Injecao SQL em pagina de login com MySQL
+# (anexe arquivos fonte ou artefatos do desafio)
+
+# Modo C: Imagem + arquivos — anexe screenshot do desafio
+/start-ctf
+# (anexe screenshot + binario/arquivos fonte)
+```
+
+O sistema automaticamente:
+1. Detecta seu idioma (EN ou PT-BR)
+2. Invoca o `challenge-classifier` para categorizar o desafio
+3. Direciona para o agente especialista apropriado
+4. Inicia o ciclo de aprendizado guiado
+
+#### Todos os Slash Commands
+
+| Comando | O Que Faz | Exemplo |
+|:---|:---|:---|
+| `/start-ctf` | Iniciar sessao de aprendizado | `/start-ctf buffer overflow em binario ELF` |
+| `/hint` | Dica progressiva (3 niveis) | `/hint` |
+| `/classify-challenge` | Classificar sem resolver | `/classify-challenge` + anexar arquivo |
+| `/analyze-binary` | Analise profunda de binario | `/analyze-binary` + anexar binario |
+| `/explain-vulnerability` | Explicar qualquer vulnerabilidade | `/explain-vulnerability SSRF` |
+| `/threat-model` | Modelo de ameacas apos resolver | `/threat-model` |
+| `/replay-exploit` | Testar sua retencao | `/replay-exploit` |
+| `/debug-exploit` | Debugar exploit falhando | `/debug-exploit` |
+| `/writeup` | Gerar relatorio pedagogico | `/writeup` |
+
+#### Exemplo de Fluxo de Sessao
+
+```
+Voce:   /start-ctf Tenho um desafio web com formulario de login
+Agente: [Detecta idioma: PT-BR]
+Agente: [Classificador: Web Exploitation > SQLi > Error-based]
+Agente: "Vamos comecar com reconhecimento. O que voce ve quando
+         visualiza o codigo-fonte da pagina?"
+
+Voce:   Tem um formulario PHP enviando para login.php
+Agente: "Otimo. Antes de usar qualquer ferramenta, tente enviar
+         uma aspas simples no campo de usuario. O que acontece?"
+
+Voce:   Apareceu um erro MySQL!
+Agente: "Excelente — isso confirma SQLi error-based. Voce consegue
+         explicar POR QUE o servidor mostrou esse erro?"
+
+...     [Exploracao guiada com gates socraticas]
+
+Voce:   Peguei a flag! FLAG{sql_1nj3ct10n_m4st3r}
+Agente: "Parabens! Agora vamos entender o impacto real.
+         Use /threat-model para analisar esta vulnerabilidade, ou
+         /writeup para documentar o que voce aprendeu."
+```
 
 ---
 
