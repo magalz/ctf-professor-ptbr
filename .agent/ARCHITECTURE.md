@@ -1,288 +1,199 @@
-# Antigravity Kit Architecture
+# ARCHITECTURE.md - CTF Professor System
 
-> Comprehensive AI Agent Capability Expansion Toolkit
-
----
-
-## 📋 Overview
-
-Antigravity Kit is a modular system consisting of:
-
-- **20 Specialist Agents** - Role-based AI personas
-- **36 Skills** - Domain-specific knowledge modules
-- **11 Workflows** - Slash command procedures
+> Complete architectural reference for the CTF Professor agent ecosystem.
 
 ---
 
-## 🏗️ Directory Structure
+## System Overview
 
-```plaintext
+The CTF Professor system is a pedagogical cybersecurity environment built on the Antigravity Kit framework. It uses specialized agents, skills, and workflows to teach CTF methodology through Socratic questioning and guided learning.
+
+**Languages:** EN + PT-BR (auto-detected per message, default PT-BR)
+
+---
+
+## Directory Structure
+
+```
 .agent/
-├── ARCHITECTURE.md          # This file
-├── agents/                  # 20 Specialist Agents
-├── skills/                  # 36 Skills
-├── workflows/               # 11 Slash Commands
-├── rules/                   # Global Rules
-└── scripts/                 # Master Validation Scripts
+├── agents/           # 18 agent definitions
+├── skills/           # 28 skill modules (SKILL.md + scripts/templates)
+├── workflows/        # 13 slash commands
+├── rules/
+│   └── GEMINI.md     # Global behavior rules + language detection
+├── scripts/          # Global utility scripts
+├── ARCHITECTURE.md   # This file
+└── SECURITY.md       # Security policies
 ```
 
 ---
 
-## 🤖 Agents (20)
+## Agent Roster
 
-Specialist AI personas for different domains.
+### CTF Core Agents (Built for this project)
 
-| Agent                    | Focus                      | Skills Used                                              |
-| ------------------------ | -------------------------- | -------------------------------------------------------- |
-| `orchestrator`           | Multi-agent coordination   | parallel-agents, behavioral-modes                        |
-| `project-planner`        | Discovery, task planning   | brainstorming, plan-writing, architecture                |
-| `frontend-specialist`    | Web UI/UX                  | frontend-design, react-best-practices, tailwind-patterns |
-| `backend-specialist`     | API, business logic        | api-patterns, nodejs-best-practices, database-design     |
-| `database-architect`     | Schema, SQL                | database-design, prisma-expert                           |
-| `mobile-developer`       | iOS, Android, RN           | mobile-design                                            |
-| `game-developer`         | Game logic, mechanics      | game-development                                         |
-| `devops-engineer`        | CI/CD, Docker              | deployment-procedures, docker-expert                     |
-| `security-auditor`       | Security compliance        | vulnerability-scanner, red-team-tactics                  |
-| `penetration-tester`     | Offensive security         | red-team-tactics                                         |
-| `test-engineer`          | Testing strategies         | testing-patterns, tdd-workflow, webapp-testing           |
-| `debugger`               | Root cause analysis        | systematic-debugging                                     |
-| `performance-optimizer`  | Speed, Web Vitals          | performance-profiling                                    |
-| `seo-specialist`         | Ranking, visibility        | seo-fundamentals, geo-fundamentals                       |
-| `documentation-writer`   | Manuals, docs              | documentation-templates                                  |
-| `product-manager`        | Requirements, user stories | plan-writing, brainstorming                              |
-| `product-owner`          | Strategy, backlog, MVP     | plan-writing, brainstorming                              |
-| `qa-automation-engineer` | E2E testing, CI pipelines  | webapp-testing, testing-patterns                         |
-| `code-archaeologist`     | Legacy code, refactoring   | clean-code, code-review-checklist                        |
-| `explorer-agent`         | Codebase analysis          | -                                                        |
+| Agent | Role | Key Skills | Triggers |
+|:---|:---|:---|:---|
+| `ctf-professor` | **Primary orchestrator** for CTF learning sessions | triage, toolchain, execution, writeup, classifier, hints | ctf, challenge, flag, lesson |
+| `challenge-classifier` | First agent in every session — 3-tier classification | ctf-challenge-classifier, triage | classify, triage, category |
+| `reverse-engineering-specialist` | Static-first binary analysis | RE analysis, triage, toolchain | reverse, decompile, ghidra, crackme |
+| `binary-exploit-engineer` | Memory corruption exploitation | binary exploitation, controlled execution, RE | pwn, exploit, buffer overflow, rop |
+| `crypto-analyst` | Mathematical cipher analysis | cryptography-analysis, triage, toolchain | crypto, cipher, rsa, aes, hash |
+| `forensics-analyst` | Digital evidence investigation | forensics-investigation, triage, toolchain | forensics, pcap, memory, stego |
+| `malware-sandbox-analyst` | Safe malware analysis | malware-sandboxing, RE analysis, toolchain | malware, sandbox, suspicious |
 
----
+### Security Agents (From original project, retained)
 
-## 🧩 Skills (36)
+| Agent | Role |
+|:---|:---|
+| `security-auditor` | Code security review and vulnerability assessment |
+| `penetration-tester` | Offensive security testing methodology |
 
-Modular knowledge domains that agents can load on-demand. based on task context.
+### Support Agents (From original project, retained)
 
-### Frontend & UI
-
-| Skill                   | Description                                                           |
-| ----------------------- | --------------------------------------------------------------------- |
-| `react-best-practices`  | React & Next.js performance optimization (Vercel - 57 rules)          |
-| `web-design-guidelines` | Web UI audit - 100+ rules for accessibility, UX, performance (Vercel) |
-| `tailwind-patterns`     | Tailwind CSS v4 utilities                                             |
-| `frontend-design`       | UI/UX patterns, design systems                                        |
-| `ui-ux-pro-max`         | 50 styles, 21 palettes, 50 fonts                                      |
-
-### Backend & API
-
-| Skill                   | Description                    |
-| ----------------------- | ------------------------------ |
-| `api-patterns`          | REST, GraphQL, tRPC            |
-| `nestjs-expert`         | NestJS modules, DI, decorators |
-| `nodejs-best-practices` | Node.js async, modules         |
-| `python-patterns`       | Python standards, FastAPI      |
-
-### Database
-
-| Skill             | Description                 |
-| ----------------- | --------------------------- |
-| `database-design` | Schema design, optimization |
-| `prisma-expert`   | Prisma ORM, migrations      |
-
-### TypeScript/JavaScript
-
-| Skill               | Description                         |
-| ------------------- | ----------------------------------- |
-| `typescript-expert` | Type-level programming, performance |
-
-### Cloud & Infrastructure
-
-| Skill                   | Description               |
-| ----------------------- | ------------------------- |
-| `docker-expert`         | Containerization, Compose |
-| `deployment-procedures` | CI/CD, deploy workflows   |
-| `server-management`     | Infrastructure management |
-
-### Testing & Quality
-
-| Skill                   | Description              |
-| ----------------------- | ------------------------ |
-| `testing-patterns`      | Jest, Vitest, strategies |
-| `webapp-testing`        | E2E, Playwright          |
-| `tdd-workflow`          | Test-driven development  |
-| `code-review-checklist` | Code review standards    |
-| `lint-and-validate`     | Linting, validation      |
-
-### Security
-
-| Skill                   | Description              |
-| ----------------------- | ------------------------ |
-| `vulnerability-scanner` | Security auditing, OWASP |
-| `red-team-tactics`      | Offensive security       |
-
-### Architecture & Planning
-
-| Skill           | Description                |
-| --------------- | -------------------------- |
-| `app-builder`   | Full-stack app scaffolding |
-| `architecture`  | System design patterns     |
-| `plan-writing`  | Task planning, breakdown   |
-| `brainstorming` | Socratic questioning       |
-
-### Mobile
-
-| Skill           | Description           |
-| --------------- | --------------------- |
-| `mobile-design` | Mobile UI/UX patterns |
-
-### Game Development
-
-| Skill              | Description           |
-| ------------------ | --------------------- |
-| `game-development` | Game logic, mechanics |
-
-### SEO & Growth
-
-| Skill              | Description                   |
-| ------------------ | ----------------------------- |
-| `seo-fundamentals` | SEO, E-E-A-T, Core Web Vitals |
-| `geo-fundamentals` | GenAI optimization            |
-
-### Shell/CLI
-
-| Skill                | Description               |
-| -------------------- | ------------------------- |
-| `bash-linux`         | Linux commands, scripting |
-| `powershell-windows` | Windows PowerShell        |
-
-### Other
-
-| Skill                     | Description               |
-| ------------------------- | ------------------------- |
-| `clean-code`              | Coding standards (Global) |
-| `behavioral-modes`        | Agent personas            |
-| `parallel-agents`         | Multi-agent patterns      |
-| `mcp-builder`             | Model Context Protocol    |
-| `documentation-templates` | Doc formats               |
-| `i18n-localization`       | Internationalization      |
-| `performance-profiling`   | Web Vitals, optimization  |
-| `systematic-debugging`    | Troubleshooting           |
+| Agent | Role |
+|:---|:---|
+| `orchestrator` | Multi-agent coordination |
+| `project-planner` | 4-phase project methodology |
+| `debugger` | Bug diagnosis and resolution |
+| `explorer-agent` | Codebase analysis and navigation |
+| `code-archaeologist` | Legacy code understanding |
+| `documentation-writer` | Technical writing |
+| `product-manager` | Feature prioritization |
+| `product-owner` | Requirements and acceptance |
+| `test-engineer` | Testing strategy |
 
 ---
 
-## 🔄 Workflows (11)
+## Skill Stack
 
-Slash command procedures. Invoke with `/command`.
+### CTF Domain Skills (Built for this project)
 
-| Command          | Description              |
-| ---------------- | ------------------------ |
-| `/brainstorm`    | Socratic discovery       |
-| `/create`        | Create new features      |
-| `/debug`         | Debug issues             |
-| `/deploy`        | Deploy application       |
-| `/enhance`       | Improve existing code    |
-| `/orchestrate`   | Multi-agent coordination |
-| `/plan`          | Task breakdown           |
-| `/preview`       | Preview changes          |
-| `/status`        | Check project status     |
-| `/test`          | Run tests                |
-| `/ui-ux-pro-max` | Design with 50 styles    |
+| Skill | Category | Purpose |
+|:---|:---|:---|
+| `ctf-challenge-classifier` | Classification | 3-tier taxonomy (Type/Category/Class) + decision tree + `classify.py` |
+| `ctf-triage-methodology` | Triage | Phase A-D analysis pipeline + bilingual Socratic prompts |
+| `hint-generation-engine` | Pedagogy | 3-tier progressive hints with gate enforcement |
+| `reverse-engineering-analysis` | RE | 4-phase pipeline (identify/disassemble/decompile/dynamic) |
+| `binary-exploitation-guide` | Pwn | 6 exploitation classes + protection bypass + `rop_chain_scaffold.py` |
+| `web-exploitation-methodology` | Web | Manual-first rule, OWASP matrix, SQLi/XSS/SSTI deep dives |
+| `cryptography-analysis` | Crypto | Cipher ID, RSA/AES/hash attack tables, math-first |
+| `forensics-investigation` | Forensics | PCAP, memory (Volatility 3), stego, disk, carving |
+| `osint-methodology` | OSINT | Passive-first pipeline, ethical boundaries |
+| `malware-sandboxing` | Malware | Docker isolation, behavioral analysis, IoC extraction |
+| `security-toolchain-manager` | Toolchain | Category-aware tool matrix (7 domains) + PT-BR explanations |
+| `controlled-execution-framework` | Exploitation | `exploit_scaffold.py` + iterative Theory-Predict-Execute-Verify |
+| `ctf-writeup-architect` | Documentation | CVSS/CVE mapping + bilingual templates (EN/PT-BR) |
+
+### Support Skills (From original project, retained)
+
+| Skill | Purpose |
+|:---|:---|
+| `clean-code` | Code quality standards |
+| `brainstorming` | Socratic questioning framework |
+| `intelligent-routing` | Agent auto-selection |
+| `i18n-localization` | Internationalization patterns |
+| `red-team-tactics` | Offensive methodology |
+| `vulnerability-scanner` | Automated security scanning |
+| `code-review-checklist` | Code review standards |
+| `architecture` | System architecture patterns |
+| `bash-linux` | Shell scripting reference |
+| `powershell-windows` | PowerShell reference |
+| `python-patterns` | Python best practices |
+| `testing-patterns` | Test methodology |
+| `behavioral-modes` | Agent behavior configuration |
+| `parallel-agents` | Multi-agent coordination |
+| `plan-writing` | Task planning methodology |
 
 ---
 
-## 🎯 Skill Loading Protocol
+## Workflow Quick Reference
 
-```plaintext
-User Request → Skill Description Match → Load SKILL.md
-                                            ↓
-                                    Read references/
-                                            ↓
-                                    Read scripts/
+### CTF Workflows (Built for this project)
+
+| Command | Purpose | Key Agent |
+|:---|:---|:---|
+| `/start-ctf` | Start CTF resolution (3 input modes, mandatory classification) | ctf-professor |
+| `/classify-challenge` | Standalone classification without solving | challenge-classifier |
+| `/hint` | Progressive hint (3-tier with gate) | ctf-professor |
+| `/analyze-binary` | Binary analysis → auto-route RE or Pwn | RE/Pwn specialist |
+| `/explain-vulnerability` | Pure educational explanation (no CTF context) | ctf-professor |
+| `/threat-model` | Post-capture STRIDE threat model | ctf-professor |
+| `/replay-exploit` | Retention test — reproduce and explain | ctf-professor |
+
+### Support Workflows (From original project, retained)
+
+| Command | Purpose |
+|:---|:---|
+| `/brainstorm` | Socratic ideation session |
+| `/debug` | Bug diagnosis workflow |
+| `/debug-exploit` | Exploit debugging |
+| `/orchestrate` | Multi-agent task coordination |
+| `/plan` | Project planning |
+| `/writeup` | Generate CTF writeup |
+
+---
+
+## Input Model: `/start-ctf`
+
+```
+USER INPUT
+│
+├── Mode A: Bare ("/start-ctf")
+│   └── Ask for description or files
+│
+├── Mode B: Text + Files ("/start-ctf SQL injection..." + source.php)
+│   └── Extract description + inventory files
+│
+└── Mode C: Image + Files ("/start-ctf" + screenshot + binary)
+    └── Read screenshot text + inventory files
+
+         ↓
+
+┌─────────────────────────┐
+│  challenge-classifier   │ ← ALWAYS invoked
+│  (3-tier classification)│
+└────────────┬────────────┘
+             ↓
+┌─────────────────────────┐
+│  User confirms or       │
+│  corrects classification│
+└────────────┬────────────┘
+             ↓
+┌─────────────────────────┐
+│  ctf-professor          │
+│  Learning Cycle begins  │
+│  (Triage → Toolchain →  │
+│   Exploitation →        │
+│   Writeup)              │
+└─────────────────────────┘
 ```
 
-### Skill Structure
+---
 
-```plaintext
-skill-name/
-├── SKILL.md           # (Required) Metadata & instructions
-├── scripts/           # (Optional) Python/Bash scripts
-├── references/        # (Optional) Templates, docs
-└── assets/            # (Optional) Images, logos
+## Agent Delegation Map
+
+```
+ctf-professor (orchestrator)
+├── challenge-classifier ← classification
+├── reverse-engineering-specialist ← RE challenges
+│   └── binary-exploit-engineer ← if remote service found
+├── binary-exploit-engineer ← Pwn challenges
+│   └── reverse-engineering-specialist ← needs deeper static RE
+├── crypto-analyst ← Crypto challenges
+├── forensics-analyst ← Forensics challenges
+│   └── reverse-engineering-specialist ← if malware found in evidence
+├── malware-sandbox-analyst ← suspicious binaries
+│   └── reverse-engineering-specialist ← for deep RE
+└── security-auditor / penetration-tester ← code review / pentest
 ```
 
-### Enhanced Skills (with scripts/references)
-
-| Skill               | Files | Coverage                            |
-| ------------------- | ----- | ----------------------------------- |
-| `ui-ux-pro-max`     | 27    | 50 styles, 21 palettes, 50 fonts    |
-| `app-builder`       | 20    | Full-stack scaffolding              |
-
 ---
 
-## � Scripts (2)
+## Language Detection (R2)
 
-Master validation scripts that orchestrate skill-level scripts.
-
-### Master Scripts
-
-| Script          | Purpose                                 | When to Use              |
-| --------------- | --------------------------------------- | ------------------------ |
-| `checklist.py`  | Priority-based validation (Core checks) | Development, pre-commit  |
-| `verify_all.py` | Comprehensive verification (All checks) | Pre-deployment, releases |
-
-### Usage
-
-```bash
-# Quick validation during development
-python .agent/scripts/checklist.py .
-
-# Full verification before deployment
-python .agent/scripts/verify_all.py . --url http://localhost:3000
-```
-
-### What They Check
-
-**checklist.py** (Core checks):
-
-- Security (vulnerabilities, secrets)
-- Code Quality (lint, types)
-- Schema Validation
-- Test Suite
-- UX Audit
-- SEO Check
-
-**verify_all.py** (Full suite):
-
-- Everything in checklist.py PLUS:
-- Lighthouse (Core Web Vitals)
-- Playwright E2E
-- Bundle Analysis
-- Mobile Audit
-- i18n Check
-
-For details, see [scripts/README.md](scripts/README.md)
-
----
-
-## 📊 Statistics
-
-| Metric              | Value                         |
-| ------------------- | ----------------------------- |
-| **Total Agents**    | 20                            |
-| **Total Skills**    | 36                            |
-| **Total Workflows** | 11                            |
-| **Total Scripts**   | 2 (master) + 18 (skill-level) |
-| **Coverage**        | ~90% web/mobile development   |
-
----
-
-## 🔗 Quick Reference
-
-| Need     | Agent                 | Skills                                |
-| -------- | --------------------- | ------------------------------------- |
-| Web App  | `frontend-specialist` | react-best-practices, frontend-design |
-| API      | `backend-specialist`  | api-patterns, nodejs-best-practices   |
-| Mobile   | `mobile-developer`    | mobile-design                         |
-| Database | `database-architect`  | database-design, prisma-expert        |
-| Security | `security-auditor`    | vulnerability-scanner                 |
-| Testing  | `test-engineer`       | testing-patterns, webapp-testing      |
-| Debug    | `debugger`            | systematic-debugging                  |
-| Plan     | `project-planner`     | brainstorming, plan-writing           |
+- Auto-detected per message (EN or PT-BR)
+- Default on ambiguity: **PT-BR**
+- Code/commands stay in English
+- Security jargon may stay in English within PT-BR
+- All Socratic prompts have bilingual variants
