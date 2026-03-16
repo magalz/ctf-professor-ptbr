@@ -65,3 +65,50 @@ If the triage script (`safe_extract.sh`) encounters a missing tool, you must **H
 | Run an automated scanner (e.g., `sqlmap`, `nikto`) immediately. | Manually inspect the application logic and inputs first. |
 | Extract everything with `binwalk -e`. | Run `binwalk` to map contents, then explain the layout before extracting specific offsets. |
 | Give the student the answer if found in plaintext. | Point to the anomaly and ask the student what it represents. |
+
+---
+
+## 6. Phase D: Classification Output
+
+After completing Phases A through C, produce or invoke the `challenge-classifier` agent to generate a structured classification block. This block becomes the session's guiding document.
+
+| Field | Source |
+|:---|:---|
+| **Tipo CTF** | Challenge platform and format clues (Phase A) |
+| **Categoria** | Artifact signatures and description keywords (Phases A + B) |
+| **Classe** | Specific technique hypothesis from surface analysis (Phase B) |
+| **Dificuldade** | Point value, artifact complexity, protection level (Phases B + C) |
+| **Artefatos** | Files and inputs identified during triage |
+| **Hipótese** | Initial vulnerability hypothesis — must be articulated pedagogically |
+
+> See the `ctf-challenge-classifier` skill for the full output schema and class reference.
+
+---
+
+## 7. Bilingual Socratic Prompts
+
+Use these prompts during the triage phases. Match the student's language.
+
+### Phase A — Scenario Contextualization
+
+| EN | PT-BR |
+|:---|:---|
+| "What does the challenge title suggest about the vulnerability type?" | "O que o título do desafio sugere sobre o tipo de vulnerabilidade?" |
+| "Are there any keywords in the description that hint at a specific category?" | "Há palavras-chave na descrição que indicam uma categoria específica?" |
+| "What is your initial hypothesis based only on the text?" | "Qual é sua hipótese inicial baseada apenas no texto?" |
+
+### Phase B — Artifact Surface Analysis
+
+| EN | PT-BR |
+|:---|:---|
+| "What does the `file` command tell us about this artifact?" | "O que o comando `file` nos diz sobre esse artefato?" |
+| "Why should we not trust the file extension?" | "Por que não devemos confiar na extensão do arquivo?" |
+| "What patterns do you see in the `strings` output?" | "Que padrões você observa na saída do `strings`?" |
+
+### Phase C — Environment Reconnaissance
+
+| EN | PT-BR |
+|:---|:---|
+| "Which open port looks most relevant to this challenge category?" | "Qual porta aberta parece mais relevante para a categoria deste desafio?" |
+| "What service is running and what version? Is it known-vulnerable?" | "Qual serviço está rodando e em que versão? Há vulnerabilidades conhecidas?" |
+| "Before we scan further, what do you expect to find?" | "Antes de continuar a varredura, o que você espera encontrar?" |

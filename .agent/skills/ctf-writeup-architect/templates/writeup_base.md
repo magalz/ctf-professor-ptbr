@@ -32,3 +32,21 @@
 * **Remediation:** How to fix it.
   * *Code level:* (e.g., Input sanitization, safe functions).
   * *Infrastructure level:* (e.g., WAF rules, network segmentation, dropping privileges).
+
+## 6. Vulnerability Mapping
+
+| Metric | Value | Justification |
+|:---|:---|:---|
+| CVE | [CVE-XXXX-XXXXX or Custom/CTF-specific] | [Brief explanation] |
+| CVSS Score | [X.X] | [Summary of why] |
+| Attack Vector | [Network/Adjacent/Local/Physical] | [Why] |
+| Attack Complexity | [Low/High] | [Why] |
+| Confidentiality | [None/Low/High] | [Why] |
+| Integrity | [None/Low/High] | [Why] |
+| Availability | [None/Low/High] | [Why] |
+
+## 7. Lessons Learned
+*What should the student take from this experience?*
+* **Core technique learned:**
+* **Tools mastered:**
+* **Most common mistake avoided:**

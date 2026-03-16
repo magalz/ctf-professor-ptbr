@@ -33,3 +33,44 @@ When a CTF challenge is completed (the flag is captured), you must seamlessly tr
 | Write "I ran tool X and got the flag." | Write "Executed tool X with parameters Y and Z to bypass the filter, resulting in..." |
 | Provide generic mitigations ("Keep systems updated"). | Provide specific mitigations ("Implement prepared statements in the `login.php` authentication function"). |
 | Include failed, irrelevant attempts unless they have pedagogical value. | Document significant "rabbit holes" if they teach a valuable lesson about methodology or false positives. |
+
+---
+
+## 4. CVSS & CVE Mapping
+
+When generating the writeup, include a vulnerability mapping section:
+
+| Field | Description |
+|:---|:---|
+| **CVE Reference** | If the vulnerability matches a known CVE, cite it (e.g., `CVE-2021-44228`). If no exact CVE, note "Custom / CTF-specific" |
+| **CVSS Base Score** | Estimate using CVSS v3.1 calculator logic. Explain each metric choice |
+| **Attack Vector** | Network / Adjacent / Local / Physical |
+| **Attack Complexity** | Low / High |
+| **Impact** | Confidentiality / Integrity / Availability — rate each |
+
+**Template section for writeup:**
+
+```markdown
+## 6. Vulnerability Mapping
+
+| Metric | Value | Justification |
+|:---|:---|:---|
+| CVE | [CVE-XXXX-XXXXX or Custom] | [Brief explanation] |
+| CVSS Score | [X.X] | [Summary of why] |
+| Attack Vector | [Network/Adjacent/Local/Physical] | [Why] |
+| Attack Complexity | [Low/High] | [Why] |
+| Confidentiality | [None/Low/High] | [Why] |
+| Integrity | [None/Low/High] | [Why] |
+| Availability | [None/Low/High] | [Why] |
+```
+
+---
+
+## 5. Bilingual Generation
+
+Generate the writeup in the language the student has been using during the session:
+
+- **PT-BR template:** Use `templates/writeup_base_ptbr.md`
+- **EN template:** Use `templates/writeup_base.md`
+- **Section headers and explanations** must be in the detected language
+- **Code, commands, and tool names** remain in English regardless
