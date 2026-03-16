@@ -1,6 +1,6 @@
-# 🎓 CTF Professor — Cybersecurity Education Agent System
+# CTF Professor - Cybersecurity Education Agent System
 
-> **Um sistema de agentes de IA focado em ensinar cibersegurança através de CTF, não apenas em resolver desafios.**
+> **Um sistema de agentes de IA focado em ensinar ciberseguranca atraves de CTF, nao apenas em resolver desafios.**
 >
 > **An AI agent system focused on teaching cybersecurity through CTF, not just solving challenges.**
 
@@ -8,15 +8,14 @@
 [![Language: PT-BR](https://img.shields.io/badge/Idioma-PT--BR-009c3b)](README.md)
 [![Language: EN](https://img.shields.io/badge/Language-EN-blue)](README.md)
 [![Antigravity](https://img.shields.io/badge/Powered%20by-Antigravity-red)](https://antigravity-kit.unikorn.vn)
-[![Status: Active Development](https://img.shields.io/badge/Status-Active%20Development-orange)](https://github.com/magalz/awesome-cybersecurity-ctf-professor-skills/tree/agent-development)
 [![Forked from](https://img.shields.io/badge/Forked%20from-sickn33%2Fantigravity--awesome--skills-lightgrey)](https://github.com/sickn33/antigravity-awesome-skills)
 
 ---
 
 ## Idioma / Language
 
-- 🇧🇷 [Português Brasileiro](#português-brasileiro) ← *Idioma principal*
-- 🇺🇸 [English](#english) ← *Primary documentation reference*
+- [Portugues Brasileiro](#portugues-brasileiro) ← *Idioma principal*
+- [English](#english) ← *Primary documentation reference*
 
 ---
 
@@ -24,7 +23,7 @@
 
 ### What is this?
 
-**CTF Professor** is a fork of the [Antigravity Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills) project, transformed into a **cybersecurity educational environment** centered on Capture The Flag (CTF) methodology.
+**CTF Professor** is a cybersecurity educational environment built on the [Antigravity Kit](https://antigravity-kit.unikorn.vn) framework, originally forked from [Antigravity Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills).
 
 Unlike tools that solve challenges automatically, this system behaves like a **Cybersecurity Professor**:
 
@@ -33,6 +32,7 @@ Unlike tools that solve challenges automatically, this system behaves like a **C
 - It **challenges** your thinking with Socratic questions
 - It **enforces** a learning methodology before allowing execution
 - It **connects** CTF vulnerabilities to real-world enterprise security
+- It **auto-detects** your language (EN/PT-BR) and responds accordingly
 
 ### Core Philosophy
 
@@ -40,264 +40,234 @@ Unlike tools that solve challenges automatically, this system behaves like a **C
 
 ### The Learning Cycle
 
-Every CTF session follows a structured 6-phase learning cycle:
+Every CTF session follows a structured 7-phase learning cycle:
 
 ```
-1. SCENARIO ANALYSIS      → Categorize the challenge, form initial hypotheses
-2. GUIDED RECONNAISSANCE  → Identify attack vectors with pedagogical explanations
-3. THEORETICAL FOUNDATION → Understand the vulnerability before touching any tool
-4. CONTROLLED EXPLOITATION → Build the exploit step-by-step with Socratic gates
-5. FLAG ACQUISITION        → Validate success; explain what the flag represents
-6. MITIGATION & WRITEUP   → Translate the flaw to enterprise risk and remediation
+1. CLASSIFICATION         -> 3-tier challenge taxonomy (Type/Category/Class)
+2. SCENARIO ANALYSIS      -> Categorize the challenge, form initial hypotheses
+3. GUIDED RECONNAISSANCE  -> Identify attack vectors with pedagogical explanations
+4. THEORETICAL FOUNDATION -> Understand the vulnerability before touching any tool
+5. CONTROLLED EXPLOITATION -> Build the exploit step-by-step with Socratic gates
+6. FLAG ACQUISITION        -> Validate success; explain what the flag represents
+7. MITIGATION & WRITEUP   -> Translate the flaw to enterprise risk and remediation
 ```
 
-### Agent System
+### Agent System (18 agents)
 
-| Agent | Role | Status |
-|:---|:---|:---|
-| `ctf-professor` | Lead orchestrator — Socratic educator and pedagogical gatekeeper | ✅ Active |
-| `security-auditor` | Code review and vulnerability assessment challenges | ✅ Active |
-| `penetration-tester` | Full engagement simulation challenges | ✅ Active |
-| `challenge-classifier` | Classifies challenges by category before solving begins | 🚧 Planned |
-| `reverse-engineering-specialist` | Static/dynamic binary analysis with assembly-level guidance | 🚧 Planned |
-| `binary-exploit-engineer` | Builds exploitation payloads using iterative construction | 🚧 Planned |
-| `forensics-analyst` | PCAP, memory forensics, steganography, artifact analysis | 🚧 Planned |
-| `crypto-analyst` | Cipher identification and mathematical weakness analysis | 🚧 Planned |
+#### CTF Specialist Agents
 
-### Skill Stack
+| Agent | Role |
+|:---|:---|
+| `ctf-professor` | Lead orchestrator - Socratic educator and pedagogical gatekeeper |
+| `challenge-classifier` | 3-tier classification (Type/Category/Class) on every session |
+| `reverse-engineering-specialist` | Static-first binary analysis with assembly-level guidance |
+| `binary-exploit-engineer` | Theory-Predict-Execute-Verify exploitation cycle |
+| `crypto-analyst` | Mathematical cipher analysis, identification-first |
+| `forensics-analyst` | PCAP, memory, stego, disk - triage before extraction |
+| `malware-sandbox-analyst` | Justification-driven safe malware analysis |
+| `security-auditor` | Code review and vulnerability assessment |
+| `penetration-tester` | Full engagement simulation |
 
-#### Core Skills (Active)
+#### Support Agents
+
+`orchestrator`, `project-planner`, `debugger`, `explorer-agent`, `code-archaeologist`, `documentation-writer`, `product-manager`, `product-owner`, `test-engineer`
+
+### Skill Stack (28 skills)
+
+#### CTF Domain Skills
+
 | Skill | Purpose |
 |:---|:---|
-| `ctf-triage-methodology` | Pedagogical initial recon — no blind execution |
-| `security-toolchain-manager` | Tool selection with justification, isolated environments |
-| `controlled-execution-framework` | Exploitation with Socratic gates and iterative construction |
-| `ctf-writeup-architect` | Root-cause writeups with corporate impact translation |
-| `i18n-localization` | PT-BR / EN bilingual support |
+| `ctf-challenge-classifier` | 3-tier taxonomy + decision tree + `classify.py` script |
+| `ctf-triage-methodology` | Pedagogical recon (Phase A-D) + bilingual Socratic prompts |
+| `hint-generation-engine` | 3-tier progressive hints with gate enforcement |
+| `reverse-engineering-analysis` | 4-phase RE pipeline (identify/disassemble/decompile/dynamic) |
+| `binary-exploitation-guide` | 6 exploit classes + protection bypass + `rop_chain_scaffold.py` |
+| `web-exploitation-methodology` | Manual-first rule, OWASP matrix, SQLi/XSS/SSTI deep dives |
+| `cryptography-analysis` | Cipher ID, RSA/AES/hash attack tables, math-first |
+| `forensics-investigation` | PCAP (Wireshark), memory (Volatility 3), stego, disk, carving |
+| `osint-methodology` | Passive-first pipeline, ethical boundaries |
+| `malware-sandboxing` | Docker isolation, behavioral analysis, IoC extraction |
+| `security-toolchain-manager` | Category-aware tool matrix (7 domains) |
+| `controlled-execution-framework` | Exploit scaffolds with Theory-Predict-Execute-Verify |
+| `ctf-writeup-architect` | CVSS/CVE mapping + bilingual templates |
 
-#### Domain Skills (Planned)
-`ctf-challenge-classifier` · `reverse-engineering-analysis` · `binary-exploitation-guide` · `web-exploitation-methodology` · `cryptography-analysis` · `forensics-investigation` · `osint-methodology` · `hint-generation-engine`
+### Workflows (13 slash commands)
 
-### Workflows (Slash Commands)
+#### CTF Workflows
 
-| Command | Purpose | Status |
-|:---|:---|:---|
-| `/start-ctf` | Start the structured learning cycle | ✅ Active |
-| `/debug-exploit` | Socratic debugging when an exploit fails | ✅ Active |
-| `/writeup` | Generate a pedagogical report after flag capture | ✅ Active |
-| `/hint` | Request a calibrated hint without getting the answer | 🚧 Planned |
-| `/classify-challenge` | Run classification pipeline on a challenge | 🚧 Planned |
-| `/analyze-binary` | Deep-dive guided binary analysis | 🚧 Planned |
-| `/explain-vulnerability` | Pure educational explanation of any vulnerability class | 🚧 Planned |
-| `/threat-model` | Build a corporate STRIDE threat model from a CTF finding | 🚧 Planned |
-| `/replay-exploit` | Re-run a completed exploit for retention testing | 🚧 Planned |
+| Command | Purpose |
+|:---|:---|
+| `/start-ctf` | Start the learning cycle (3 input modes: bare / text+files / image+files) |
+| `/classify-challenge` | Standalone challenge classification |
+| `/hint` | Progressive 3-tier hint with gate enforcement |
+| `/analyze-binary` | Deep binary analysis - auto-routes to RE or Pwn specialist |
+| `/explain-vulnerability` | Pure educational explanation of any vulnerability class |
+| `/threat-model` | Post-capture STRIDE threat model with CVSS |
+| `/replay-exploit` | Retention test - reproduce and explain a completed exploit |
+| `/debug-exploit` | Socratic debugging when an exploit fails |
+| `/writeup` | Generate pedagogical writeup after flag capture |
+
+#### Support Workflows
+
+`/brainstorm`, `/debug`, `/orchestrate`, `/plan`
 
 ### Project Structure
 
 ```
-NEW/
-├── agents/              # Specialist AI agent definitions
-│   ├── cybersecurity-professor-ctf.md
-│   ├── security-auditor.md
-│   ├── penetration-tester.md
-│   └── ...
-├── skills/              # Domain-specific knowledge modules
-│   ├── ctf-triage-methodology/
-│   │   ├── skill.MD
-│   │   ├── scripts/
-│   │   │   ├── safe_extract.sh
-│   │   │   └── entropy_analyzer.py
-│   │   └── checklists/
-│   ├── controlled-execution-framework/
+.agent/
+├── agents/              # 18 specialist agent definitions
+├── skills/              # 28 skill modules (SKILL.md + scripts/templates)
+│   ├── ctf-challenge-classifier/
 │   │   ├── SKILL.md
-│   │   ├── templates/
-│   │   │   └── exploit_scaffold.py
-│   │   └── checklists/
-│   │       └── pedagogical-gate.md
-│   ├── security-toolchain-manager/
-│   │   └── scripts/
-│   │       └── verify_toolchain.sh
+│   │   └── scripts/classify.py
+│   ├── binary-exploitation-guide/
+│   │   ├── SKILL.md
+│   │   └── templates/rop_chain_scaffold.py
 │   ├── ctf-writeup-architect/
-│   │   ├── templates/
-│   │   │   └── writeup_base.md
-│   │   └── scripts/
-│   │       └── log_aggregator.sh
+│   │   └── templates/
+│   │       ├── writeup_base.md
+│   │       └── writeup_base_ptbr.md
 │   └── ...
-├── workflows/           # Slash command procedures
-│   ├── start-ctf.md
-│   ├── debug-exploit.md
-│   └── writeup.md
+├── workflows/           # 13 slash command definitions
 ├── rules/
-│   └── GEMINI.md        # Global rules
-└── scripts/             # Master orchestration scripts
-    ├── checklist.py
-    └── verify_all.py
+│   └── GEMINI.md        # Global rules + language detection (R2)
+├── scripts/             # Utility scripts
+├── ARCHITECTURE.md      # Full system reference
+└── SECURITY.md          # Security policies
 ```
 
 ### Quick Start
 
-1. **Clone the repository** (use the `agent-development` branch for latest CTF features):
+1. **Clone the repository**:
    ```bash
-   git clone -b agent-development https://github.com/magalz/awesome-cybersecurity-ctf-professor-skills.git
+   git clone https://github.com/magalz/agentes-ctf.git
+   cd agentes-ctf
    ```
 
-2. **Install skills** into your Antigravity/Gemini CLI workspace:
-   ```bash
-   cp -r NEW/ .agent/
+2. **Start a CTF session** (supports multiple input modes):
    ```
-
-3. **Start a CTF session**:
-   ```
+   /start-ctf
+   /start-ctf SQL injection on a login page
+   /start-ctf [attach screenshot + binary file]
    /start-ctf web http://10.10.10.10
    /start-ctf pwn vulnerable_binary
-   /start-ctf pcap capture.pcapng
    ```
 
-4. **When stuck**, ask for a hint:
+3. **When stuck**, ask for a hint:
    ```
    /hint
+   ```
+
+4. **Learn about any vulnerability**:
+   ```
+   /explain-vulnerability buffer overflow
+   /explain-vulnerability SQL Injection
    ```
 
 ### CTF Categories Supported
 
-| Category | Skills | Status |
+| Category | Skill | Classes |
 |:---|:---|:---|
-| Web | `web-exploitation-methodology` | 🚧 Planned |
-| Binary Exploitation (Pwn) | `binary-exploitation-guide`, `exploit_scaffold.py` | ✅ Partial |
-| Reverse Engineering | `reverse-engineering-analysis` | 🚧 Planned |
-| Cryptography | `cryptography-analysis` | 🚧 Planned |
-| Forensics / Steganography | `forensics-investigation` | 🚧 Planned |
-| OSINT | `osint-methodology` | 🚧 Planned |
+| Web | `web-exploitation-methodology` | SQLi, XSS, SSRF, SSTI, IDOR, JWT, XXE, Race Conditions |
+| Pwn | `binary-exploitation-guide` | BOF, ROP, Heap (UAF, Tcache), Format String, Kernel |
+| RE | `reverse-engineering-analysis` | Anti-debug, Obfuscation, Decompilation, Symbolic Execution |
+| Crypto | `cryptography-analysis` | RSA, AES, ECC, Hash, XOR, Padding Oracle |
+| Forensics | `forensics-investigation` | Memory (Volatility), PCAP, Stego, Disk, Carving |
+| OSINT | `osint-methodology` | Geolocation, SOCMINT, Dorking, Metadata |
+| Cloud | (via classifier) | S3, IAM, Lambda, K8s/Docker Escapes |
+| AI/ML | (via classifier) | Prompt Injection, Adversarial Attacks |
+| Hardware | (via classifier) | Firmware, JTAG/UART, Side-channel |
 
 ---
 
-## Português Brasileiro
+## Portugues Brasileiro
 
-### O que é isso?
+### O que e isso?
 
-**CTF Professor** é um fork do projeto [Antigravity Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills), transformado em um **ambiente educacional de cibersegurança** centrado na metodologia de Capture The Flag (CTF).
+**CTF Professor** e um ambiente educacional de ciberseguranca construido sobre o framework [Antigravity Kit](https://antigravity-kit.unikorn.vn), originalmente um fork do [Antigravity Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills).
 
-Diferente de ferramentas que resolvem desafios automaticamente, este sistema se comporta como um **Professor de Cibersegurança**:
+Diferente de ferramentas que resolvem desafios automaticamente, este sistema se comporta como um **Professor de Ciberseguranca**:
 
-- Ele **ensina**, não apenas resolve
-- Ele **guia** por raciocínio estruturado
-- Ele **desafia** seu pensamento com perguntas socrática
-- Ele **aplica** uma metodologia de aprendizado antes de permitir a execução
-- Ele **conecta** as vulnerabilidades do CTF com a segurança corporativa do mundo real
+- Ele **ensina**, nao apenas resolve
+- Ele **guia** por raciocinio estruturado
+- Ele **desafia** seu pensamento com perguntas socraticas
+- Ele **aplica** uma metodologia de aprendizado antes de permitir a execucao
+- Ele **conecta** vulnerabilidades do CTF com seguranca corporativa real
+- Ele **detecta automaticamente** seu idioma (EN/PT-BR) e responde adequadamente
 
 ### Filosofia Central
 
-> *"Não ensine apenas como encontrar a flag; ensine a compreensão da vulnerabilidade que permitiu sua existência."*
+> *"Nao ensine apenas como encontrar a flag; ensine a compreensao da vulnerabilidade que permitiu sua existencia."*
 
 ### O Ciclo de Aprendizado
 
-Cada sessão de CTF segue um ciclo estruturado de 6 fases:
-
 ```
-1. ANÁLISE DO CENÁRIO    → Categorizar o desafio, formular hipóteses iniciais
-2. RECONHECIMENTO GUIADO → Identificar vetores de ataque com explicações pedagógicas
-3. BASE TEÓRICA          → Compreender a vulnerabilidade antes de usar qualquer ferramenta
-4. EXPLORAÇÃO CONTROLADA → Construir o exploit passo a passo com gates socráticas
-5. CAPTURA DA FLAG       → Validar o sucesso; explicar o que a flag representa
-6. MITIGAÇÃO E WRITEUP   → Traduzir a falha para risco corporativo e remediação
+1. CLASSIFICACAO          -> Taxonomia 3 niveis (Tipo/Categoria/Classe)
+2. ANALISE DO CENARIO     -> Categorizar o desafio, formular hipoteses
+3. RECONHECIMENTO GUIADO  -> Identificar vetores de ataque com explicacoes
+4. BASE TEORICA           -> Compreender a vulnerabilidade antes de usar ferramentas
+5. EXPLORACAO CONTROLADA  -> Construir o exploit passo a passo com gates socraticas
+6. CAPTURA DA FLAG        -> Validar sucesso; explicar o que a flag representa
+7. MITIGACAO E WRITEUP    -> Traduzir a falha para risco corporativo e remediacao
 ```
 
-### Sistema de Agentes
+### Sistema de Agentes (18 agentes)
 
-| Agente | Função | Status |
-|:---|:---|:---|
-| `ctf-professor` | Orquestrador principal — educador socrático e guardião pedagógico | ✅ Ativo |
-| `security-auditor` | Desafios de revisão de código e avaliação de vulnerabilidades | ✅ Ativo |
-| `penetration-tester` | Simulação de engajamento completo | ✅ Ativo |
-| `challenge-classifier` | Classifica desafios por categoria antes de começar a resolver | 🚧 Planejado |
-| `reverse-engineering-specialist` | Análise binária estática/dinâmica com orientação em assembly | 🚧 Planejado |
-| `binary-exploit-engineer` | Constrói payloads de exploração com construção iterativa | 🚧 Planejado |
-| `forensics-analyst` | PCAP, forense de memória, esteganografia, análise de artefatos | 🚧 Planejado |
-| `crypto-analyst` | Identificação de cifras e análise de fraquezas matemáticas | 🚧 Planejado |
-
-### Habilidades (Skills)
-
-#### Habilidades Core (Ativas)
-| Habilidade | Propósito |
+| Agente | Funcao |
 |:---|:---|
-| `ctf-triage-methodology` | Reconhecimento inicial pedagógico — sem execução cega |
-| `security-toolchain-manager` | Seleção de ferramentas com justificativa, ambientes isolados |
-| `controlled-execution-framework` | Exploração com gates socráticas e construção iterativa |
-| `ctf-writeup-architect` | Writeups de causa raiz com tradução para impacto corporativo |
-| `i18n-localization` | Suporte bilíngue PT-BR / EN |
-
-#### Habilidades de Domínio (Planejadas)
-`ctf-challenge-classifier` · `reverse-engineering-analysis` · `binary-exploitation-guide` · `web-exploitation-methodology` · `cryptography-analysis` · `forensics-investigation` · `osint-methodology` · `hint-generation-engine`
+| `ctf-professor` | Orquestrador principal - educador socratico |
+| `challenge-classifier` | Classificacao 3 niveis em cada sessao |
+| `reverse-engineering-specialist` | Analise binaria estatica-primeiro |
+| `binary-exploit-engineer` | Ciclo Teoria-Prever-Executar-Verificar |
+| `crypto-analyst` | Analise matematica de cifras |
+| `forensics-analyst` | PCAP, memoria, stego, disco |
+| `malware-sandbox-analyst` | Analise segura de malware |
+| `security-auditor` | Revisao de codigo e avaliacao de vulnerabilidades |
+| `penetration-tester` | Simulacao de engajamento completo |
 
 ### Fluxos de Trabalho (Slash Commands)
 
-| Comando | Propósito | Status |
-|:---|:---|:---|
-| `/start-ctf` | Iniciar o ciclo de aprendizado estruturado | ✅ Ativo |
-| `/debug-exploit` | Depuração socrática quando um exploit falha | ✅ Ativo |
-| `/writeup` | Gerar relatório pedagógico após captura da flag | ✅ Ativo |
-| `/hint` | Solicitar uma dica calibrada sem receber a resposta | 🚧 Planejado |
-| `/classify-challenge` | Executar pipeline de classificação em um desafio | 🚧 Planejado |
-| `/analyze-binary` | Análise guiada aprofundada de binário | 🚧 Planejado |
-| `/explain-vulnerability` | Explicação educacional pura de qualquer classe de vulnerabilidade | 🚧 Planejado |
-| `/threat-model` | Construir modelo de ameaças STRIDE corporativo a partir de um finding de CTF | 🚧 Planejado |
-| `/replay-exploit` | Re-executar um exploit completo para teste de retenção | 🚧 Planejado |
+| Comando | Proposito |
+|:---|:---|
+| `/start-ctf` | Iniciar sessao (3 modos: vazio / texto+arquivos / imagem+arquivos) |
+| `/classify-challenge` | Classificacao standalone de desafio |
+| `/hint` | Dica progressiva 3 niveis com gate |
+| `/analyze-binary` | Analise profunda de binario |
+| `/explain-vulnerability` | Explicacao educacional pura |
+| `/threat-model` | Modelo de ameacas STRIDE pos-captura |
+| `/replay-exploit` | Teste de retencao - reproduzir e explicar |
 
-### Como Começar
+### Como Comecar
 
-1. **Clone o repositório** (use o branch `agent-development` para os recursos CTF mais recentes):
+1. **Clone o repositorio**:
    ```bash
-   git clone -b agent-development https://github.com/magalz/awesome-cybersecurity-ctf-professor-skills.git
+   git clone https://github.com/magalz/agentes-ctf.git
+   cd agentes-ctf
    ```
 
-2. **Instale as skills** no seu workspace Antigravity/Gemini CLI:
-   ```bash
-   cp -r NEW/ .agent/
+2. **Inicie uma sessao CTF**:
    ```
-
-3. **Inicie uma sessão CTF**:
-   ```
-   /start-ctf web http://10.10.10.10
+   /start-ctf
+   /start-ctf Injecao SQL em pagina de login
    /start-ctf pwn binario_vulneravel
-   /start-ctf pcap captura.pcapng
    ```
 
-4. **Quando travar**, peça uma dica:
+3. **Quando travar**, peca uma dica:
    ```
    /hint
    ```
 
-### Categorias de CTF Suportadas
-
-| Categoria | Habilidades | Status |
-|:---|:---|:---|
-| Web | `web-exploitation-methodology` | 🚧 Planejado |
-| Exploração de Binários (Pwn) | `binary-exploitation-guide`, `exploit_scaffold.py` | ✅ Parcial |
-| Engenharia Reversa | `reverse-engineering-analysis` | 🚧 Planejado |
-| Criptografia | `cryptography-analysis` | 🚧 Planejado |
-| Forense / Esteganografia | `forensics-investigation` | 🚧 Planejado |
-| OSINT | `osint-methodology` | 🚧 Planejado |
-
 ---
 
-## Contributing / Contribuindo
-
-- **New agents/skills:** Follow the `SKILL.md` format documented in [NEW/skills/doc.md](NEW/skills/doc.md)
-- **Novas habilidades:** Siga o formato `SKILL.md` documentado em [NEW/skills/doc.md](NEW/skills/doc.md)
-- Branch de desenvolvimento: `agent-development`
-
----
-
-## Credits / Créditos
-
-This project is built on top of the following open-source foundations:
+## Credits / Creditos
 
 | Project | Role |
 |:---|:---|
-| [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills) | Original upstream skills repository — 1,254+ agentic skills |
-| [Antigravity Kit](https://antigravity-kit.unikorn.vn) | Agent/Skill/Workflow framework documentation |
+| [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills) | Original upstream skills repository |
+| [Antigravity Kit](https://antigravity-kit.unikorn.vn) | Agent/Skill/Workflow framework |
 
-All upstream work retains its original MIT License. This fork's CTF-specific additions are also MIT licensed.
+All upstream work retains its original MIT License. This project's CTF-specific additions are also MIT licensed.
 
 ---
 
