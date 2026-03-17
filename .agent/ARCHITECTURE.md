@@ -113,6 +113,7 @@ The CTF Professor system is a pedagogical cybersecurity environment built on the
 
 | Command | Purpose | Key Agent |
 |:---|:---|:---|
+| `/install` | Setup environment, build Docker, install dependencies | orchestrator / support |
 | `/start-ctf` | Start CTF resolution (3 input modes, mandatory classification) | ctf-professor |
 | `/classify-challenge` | Standalone classification without solving | challenge-classifier |
 | `/hint` | Progressive hint (3-tier with gate) | ctf-professor |
