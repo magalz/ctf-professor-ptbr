@@ -21,10 +21,17 @@ Cada desafio segue rigorosamente este ciclo para garantir que você realmente ap
 ## 🛠️ Comandos Disponíveis (Slash Commands)
 
 ### Iniciar um Desafio (`/start-ctf`)
-Este é o comando principal. Ele aceita três modos de entrada:
+Este é o comando principal. Ele aceita quatro modos de entrada:
 - **Modo Bare**: Digite apenas `/start-ctf` e o sistema pedirá detalhes.
+- **Modo URL**: Cole o link do desafio (CTFd, HTB, THM) e o sistema baixará tudo automaticamente.
 - **Modo Texto + Arquivos**: `/start-ctf Injecao SQL` e anexe os arquivos fonte.
 - **Modo Imagem + Arquivos**: Anexe um print do desafio do CTF e digite `/start-ctf`.
+
+### Conectar Plataformas (`/link-ctf`)
+Use este comando para configurar suas chaves de API e tokens de acesso. Isso permite que o Professor:
+- Baixe descrições de desafios de links externos.
+- Baixe arquivos de anexos automaticamente para o Sandbox.
+- Submeta flags para você assim que forem encontradas.
 
 ### Obter Dicas (`/hint`)
 Dicas progressivas em 3 níveis:

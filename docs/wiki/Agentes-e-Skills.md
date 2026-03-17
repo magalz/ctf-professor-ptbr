@@ -32,6 +32,7 @@ As skills são o "cérebro" técnico que os agentes utilizam. Algumas das mais i
 
 | Skill | O que ela faz? |
 | :--- | :--- |
+| `ctf-platform-bridge` | Conecta-se a APIs de CTFd, HTB e THM para baixar desafios e submeter flags automaticamente. |
 | `ctf-triage-methodology` | Define como fazer o reconhecimento inicial sem disparar alertas. |
 | `controlled-execution-framework` | Controla o ciclo "Teoria-Prever-Executar-Verificar" de exploits. |
 | `security-toolchain-manager` | Sabe quais ferramentas instalar para cada tipo de desafio. |

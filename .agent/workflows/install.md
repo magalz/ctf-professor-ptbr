@@ -43,7 +43,20 @@ $ARGUMENTS
 ### Step 5: Final Configuration
 
 1. **Check** if `mcp_config.json` needs any local path updates.
-2. **Confirm** that the user is ready to start their first CTF session with `/start-ctf`.
+
+### Step 6: CTF Platform Connection (Optional)
+
+1. **Link** your CTF accounts to enable automated challenge intake and flag submission.
+2. **Select Platform:**
+   - **CTFd**: Requires Platform URL and Access Token.
+   - **HackTheBox**: Requires App Token (v4).
+   - **TryHackMe**: Requires Session Cookie (`connect.sid`).
+3. **Guidance:** The agent will provide step-by-step instructions on where to find these tokens for each platform.
+4. **Storage:** Credentials are saved securely in a local `.env` file (ignored by Git).
+
+### Step 7: Completion
+
+1. **Confirm** that the user is ready to start their first CTF session with `/start-ctf`.
 
 ---
 

@@ -25,8 +25,13 @@ This workflow supports three input modes. Detect automatically which mode was us
 ### Step 0: Intake (ALL modes)
 
 1. **Collect inputs:** Identify everything available — text description, attached files (list names and types), images (read visible text from screenshots).
-2. **If bare mode:** Ask the user to provide at minimum: a description of the challenge OR a file OR a screenshot. Do not proceed without at least one input.
-3. **Language detection:** Detect the user's language (EN or PT-BR) from their message text. Respond in the same language throughout the session.
+2. **URL Detection & Automated Intake:** If the user provides a URL (CTFd, HackTheBox, TryHackMe):
+   - **Invoke** the `ctf-platform-bridge` skill.
+   - **Fetch** challenge title, description, and category via `platform_client.py`.
+   - **Download** all attachments directly to the sandbox workspace.
+   - **Inform** the user: "Detected [Platform] URL. Fetching challenge details and files..."
+3. **If bare mode:** Ask the user to provide at minimum: a description of the challenge OR a file OR a screenshot. Do not proceed without at least one input.
+4. **Language detection:** Detect the user's language (EN or PT-BR) from their message text. Respond in the same language throughout the session.
 
 ### Step 1: Classification (MANDATORY — never skip)
 

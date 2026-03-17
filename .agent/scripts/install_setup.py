@@ -103,6 +103,70 @@ class InstallSetup:
             logger.error(f"Failed to install libraries: {e}")
             return False
 
+    def setup_ctf_platforms(self):
+        """Guide the user through linking CTF platforms."""
+        env_path = self.project_root / ".env"
+        
+        logger.info("\n--- CTF Platform Connection (Optional) ---")
+        logger.info("Linking your accounts enables automated challenge intake and flag submission.")
+        
+        platforms = {
+            "1": ("CTFd", ["CTFD_URL", "CTFD_TOKEN"]),
+            "2": ("HackTheBox", ["HTB_TOKEN"]),
+            "3": ("TryHackMe", ["THM_SESSION_SID"])
+        }
+        
+        logger.info("Available Platforms:\n1. CTFd\n2. HackTheBox\n3. TryHackMe\n4. Skip")
+        choice = input("Select a platform to link (or 4 to skip): ")
+        
+        if choice in platforms:
+            name, keys = platforms[choice]
+            logger.info(f"\nConfiguring {name}...")
+            
+            # Guide the user
+            if name == "CTFd":
+                logger.info("Hint: Generate an Access Token in /settings > Access Tokens.")
+            elif name == "HackTheBox":
+                logger.info("Hint: Find your App Token in Profile Settings > App Tokens.")
+            elif name == "TryHackMe":
+                logger.info("Hint: Copy the 'connect.sid' cookie from your browser after logging in.")
+            
+            env_content = []
+            if env_path.exists():
+                with open(env_path, 'r') as f:
+                    env_content = f.readlines()
+            
+            new_values = {}
+            for key in keys:
+                val = input(f"Enter {key}: ")
+                if val:
+                    new_values[key] = val
+            
+            # Update .env
+            with open(env_path, 'w') as f:
+                # Keep existing values not being updated
+                for line in env_content:
+                    if '=' in line:
+                        k = line.split('=')[0]
+                        if k not in new_values:
+                            f.write(line)
+                # Write new values
+                for k, v in new_values.items():
+                    f.write(f"{k}={v}\n")
+            
+            logger.info(f"✅ {name} configuration saved to .env")
+            
+            # Ensure .env is in .gitignore
+            gitignore = self.project_root / ".gitignore"
+            if gitignore.exists():
+                with open(gitignore, 'a+') as f:
+                    f.seek(0)
+                    if ".env" not in f.read():
+                        f.write("\n.env\n")
+            
+            return True
+        return False
+
     def run_full_setup(self, force_rebuild: bool = False):
         """Execute the full setup sequence."""
         logger.info("Starting CTF Professor environment setup...")
@@ -130,7 +194,10 @@ class InstallSetup:
             return False
         logger.info(f"✅ Docker image '{self.image_name}' is ready.")
 
-        logger.info("✨ Environment setup completed successfully! ✨")
+        # 4. CTF Platforms
+        self.setup_ctf_platforms()
+
+        logger.info("\n✨ Environment setup completed successfully! ✨")
         return True
 
 if __name__ == "__main__":
