@@ -19,7 +19,8 @@ O CTF Professor foi desenhado para ser operado via **Gemini CLI**. Acreditamos q
 ## 📖 Navegação da Wiki
 
 1. [**Guia de Instalação**](Instalacao) - Tudo o que você precisa para configurar o ambiente.
-2. [**Como Usar (Comandos)**](Como-Usar) - Aprenda sobre o comando `/start-ctf` e outros.
-3. [**Agentes e Skills**](Agentes-e-Skills) - Conheça o "exército" de especialistas por trás do sistema.
-4. [**Sandbox Docker**](Sandbox-Docker) - Entenda como funciona o isolamento no Kali Linux.
-5. [**Contribuindo**](Contribuindo) - Como adicionar novas habilidades ao professor.
+2. [**Modelos e Custos**](Modelos-e-Custos) - Por que usar o modelo Pro e estimativa de gastos.
+3. [**Como Usar (Comandos)**](Como-Usar) - Aprenda sobre o comando `/start-ctf` e outros.
+4. [**Agentes e Skills**](Agentes-e-Skills) - Conheça o "exército" de especialistas por trás do sistema.
+5. [**Sandbox Docker**](Sandbox-Docker) - Entenda como funciona o isolamento no Kali Linux.
+6. [**Contribuindo**](Contribuindo) - Como adicionar novas habilidades ao professor.
