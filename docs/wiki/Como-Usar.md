@@ -21,8 +21,9 @@ Cada desafio segue rigorosamente este ciclo para garantir que você realmente ap
 ## 🛠️ Comandos Disponíveis (Slash Commands)
 
 ### Iniciar um Desafio (`/start-ctf`)
-Este é o comando principal. Ele aceita quatro modos de entrada:
+Este é o comando principal. Ele aceita cinco modos de entrada:
 - **Modo Bare**: Digite apenas `/start-ctf` e o sistema pedirá detalhes.
+- **Modo Pasta Local**: `/start-ctf CTF1`. O sistema lerá arquivos e descrições de `CTFs/CTF1/`.
 - **Modo URL**: Cole o link do desafio (CTFd, HTB, THM) e o sistema baixará tudo automaticamente.
 - **Modo Texto + Arquivos**: `/start-ctf Injecao SQL` e anexe os arquivos fonte.
 - **Modo Imagem + Arquivos**: Anexe um print do desafio do CTF e digite `/start-ctf`.

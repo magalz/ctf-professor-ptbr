@@ -10,13 +10,15 @@ $ARGUMENTS
 
 ## Input Modes
 
-This workflow supports three input modes. Detect automatically which mode was used:
+This workflow supports four input modes. Detect automatically which mode was used:
 
 | Mode | Example | What to do |
 |:---|:---|:---|
 | **Bare** | `/start-ctf` | Ask the user to describe the challenge and/or attach files |
-| **Text + files** | `/start-ctf SQL injection challenge on a login page` + attached binary/source | Extract description, inventory attached files |
-| **Image + files** | `/start-ctf` + screenshot of CTFd challenge page + attached files | Read screenshot for title/tags/description, inventory attached files |
+| **Local Folder** | `/start-ctf CTF1` | Check `CTFs/CTF1/` for artifacts and description |
+| **URL** | `/start-ctf https://ctfd.example.com/...` | Fetch metadata and download files from CTF platforms |
+| **Text + files** | `/start-ctf SQL injection challenge...` + attached files | Extract description, inventory attached files |
+| **Image + files** | `/start-ctf` + screenshot + attached files | Read screenshot for description, inventory attached files |
 
 ---
 
@@ -24,14 +26,18 @@ This workflow supports three input modes. Detect automatically which mode was us
 
 ### Step 0: Intake (ALL modes)
 
-1. **Collect inputs:** Identify everything available — text description, attached files (list names and types), images (read visible text from screenshots).
-2. **URL Detection & Automated Intake:** If the user provides a URL (CTFd, HackTheBox, TryHackMe):
+1. **Collect inputs:** Identify everything available — text description, attached files, images.
+2. **Local Folder Detection:** If the argument matches a folder in `CTFs/`:
+   - **Invoke** `.agent/scripts/ingest_local.py`.
+   - **Load** description and artifact list.
+   - **Inform** the user: "Detected local CTF folder. Ingesting 'CTFs/[Folder]' artifacts..."
+3. **URL Detection & Automated Intake:** If the user provides a URL (CTFd, HackTheBox, TryHackMe):
    - **Invoke** the `ctf-platform-bridge` skill.
-   - **Fetch** challenge title, description, and category via `platform_client.py`.
+   - **Fetch** challenge details via `platform_client.py`.
    - **Download** all attachments directly to the sandbox workspace.
    - **Inform** the user: "Detected [Platform] URL. Fetching challenge details and files..."
-3. **If bare mode:** Ask the user to provide at minimum: a description of the challenge OR a file OR a screenshot. Do not proceed without at least one input.
-4. **Language detection:** Detect the user's language (EN or PT-BR) from their message text. Respond in the same language throughout the session.
+4. **If bare mode:** Ask the user to provide at minimum: a description, a file, or a screenshot.
+5. **Language detection:** Detect the user's language (EN or PT-BR).
 
 ### Step 1: Classification (MANDATORY — never skip)
 
