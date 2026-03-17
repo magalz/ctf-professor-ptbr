@@ -1,48 +1,48 @@
 ---
-description: Generate a comprehensive CTF writeup based on the session history or a specific local challenge folder.
+description: Gera um writeup (relatório) completo de CTF baseado no histórico da sessão ou em uma pasta de desafio local específica.
 ---
 
-# /writeup - Generate CTF Report
+# /writeup - Gerar Relatório de CTF
 
 $ARGUMENTS
 
 ---
 
-## Task
+## Tarefa
 
-This command transitions the session from execution to documentation. It produces a pedagogical and professional CTF writeup.
+Este comando faz a transição da sessão de execução para documentação. Ele produz um writeup de CTF pedagógico e profissional.
 
-### Steps:
+### Passos:
 
-1. **Context Aggregation**
-   - **Check for Argument**: If `$ARGUMENTS` contains a folder name (e.g., `CTF01`), read `CTFs/[Folder]/notes.md` to gather the session history, description, and flag.
-   - **No Argument**: If no folder is provided, scan the immediate conversation history for successful commands, identified vulnerabilities, and executed scripts.
+1. **Agregação de Contexto**
+   - **Verificar Argumento**: Se `$ARGUMENTS` contiver o nome de uma pasta (ex: `CTF01`), leia `CTFs/[Pasta]/notes.md` para reunir o histórico da sessão, descrição e a flag.
+   - **Sem Argumento**: Se nenhuma pasta for fornecida, analise o histórico imediato da conversa em busca de comandos bem-sucedidos, vulnerabilidades identificadas e scripts executados.
 
-2. **Draft Generation**
-   - Orchestrate with `ctf-writeup-architect` skill.
-   - Populate the appropriate template (PT-BR or EN) using the aggregated context.
-   - Ensure the "Real-World Impact & Mitigation" section translates the CTF flaw into a corporate enterprise scenario.
+2. **Geração de Rascunho**
+   - Orquestre com a skill `ctf-writeup-architect`.
+   - Preencha o template apropriado (PT-BR ou EN) usando o contexto agregado.
+   - Certifique-se de que a seção "Real-World Impact & Mitigation" traduza a falha do CTF para um cenário corporativo real.
 
-3. **Output and Save**
-   - **Present**: Show a summary or the drafted writeup to the user.
-   - **Auto-Save**: If a folder was provided in Step 1, automatically create and save the full markdown report to `CTFs/[Folder]/writeup.md`.
+3. **Saída e Salvamento**
+   - **Apresentar**: Mostre um resumo ou o rascunho do writeup para o usuário.
+   - **Salvamento Automático**: Se uma pasta foi fornecida no Passo 1, crie e salve automaticamente o relatório markdown completo em `CTFs/[Pasta]/writeup.md`.
 
-4. **User Review (Optional)**
-   - Ask for confirmation on the exact payloads used and if any manual steps performed outside the chat need to be included.
+4. **Revisão do Usuário (Opcional)**
+   - Peça confirmação sobre os payloads exatos usados e se algum passo manual executado fora do chat precisa ser incluído.
 
 ---
 
-## Usage Examples
+## Exemplos de Uso
 
 ```
 /writeup
 /writeup CTF01
-/writeup focus on the buffer overflow mitigation
+/writeup foque na mitigação do buffer overflow
 ```
 
 ---
 
-## Before Starting
+## Antes de Iniciar
 
-If the CTF is not yet completed and no folder is provided, clarify the scope:
-- Are we writing a partial report up to our current progress, or have you captured the flag outside of this chat?
+Se o CTF ainda não estiver concluído e nenhuma pasta for fornecida, esclareça o escopo:
+- Estamos escrevendo um relatório parcial até o nosso progresso atual, ou você capturou a flag fora deste chat?

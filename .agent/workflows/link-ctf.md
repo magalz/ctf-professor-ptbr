@@ -1,50 +1,50 @@
 ---
-description: Link your CTF platform accounts (CTFd, HackTheBox, TryHackMe) to enable automated challenge intake and flag submission.
+description: Vincula suas contas de plataformas de CTF (CTFd, HackTheBox, TryHackMe) para permitir ingestão automatizada de desafios e submissão de flags.
 ---
 
-# /link-ctf — Connect CTF Platforms
+# /link-ctf — Conectar Plataformas de CTF
 
 $ARGUMENTS
 
 ---
 
-## Task
+## Tarefa
 
-### Step 1: Platform Selection
-Ask the user which platform they want to connect:
-- **CTFd** (Self-hosted or Cloud)
+### Passo 1: Seleção de Plataforma
+Pergunte ao usuário qual plataforma ele deseja conectar:
+- **CTFd** (Self-hosted ou Cloud)
 - **HackTheBox**
 - **TryHackMe**
 
-### Step 2: Guided Configuration
-Provide specific instructions based on the choice:
+### Passo 2: Configuração Guiada
+Forneça instruções específicas com base na escolha:
 
-#### For CTFd:
-1. Log in to your CTFd instance.
-2. Go to **Settings** > **Access Tokens**.
-3. Generate a new token and provide the **Platform URL** and **Token**.
+#### Para CTFd:
+1. Faça login na sua instância CTFd.
+2. Vá para **Settings** (Configurações) > **Access Tokens** (Tokens de Acesso).
+3. Gere um novo token e forneça a **URL da Plataforma** e o **Token**.
 
-#### For HackTheBox:
-1. Log in to [app.hackthebox.com](https://app.hackthebox.com/).
-2. Go to **Profile Settings** > **App Tokens**.
-3. Create a new token and provide it here.
+#### Para HackTheBox:
+1. Faça login em [app.hackthebox.com](https://app.hackthebox.com/).
+2. Vá para **Profile Settings** (Configurações de Perfil) > **App Tokens**.
+3. Crie um novo token e forneça-o aqui.
 
-#### For TryHackMe:
-1. Log in to [tryhackme.com](https://tryhackme.com/).
-2. Open Browser DevTools (F12) > Application/Storage > Cookies.
-3. Find the `connect.sid` cookie and provide its value.
+#### Para TryHackMe:
+1. Faça login em [tryhackme.com](https://tryhackme.com/).
+2. Abra o DevTools do navegador (F12) > Application/Storage > Cookies.
+3. Encontre o cookie `connect.sid` e forneça o seu valor.
 
-### Step 3: Persistence
-1. Invoke `install_setup.py` (or a dedicated integration script) to save the values to the local `.env` file.
-2. Ensure the user knows their credentials are safe and only stored locally.
+### Passo 3: Persistência
+1. Invoque `install_setup.py` (ou um script de integração dedicado) para salvar os valores no arquivo `.env` local.
+2. Garanta que o usuário saiba que suas credenciais estão seguras e armazenadas apenas localmente.
 
-### Step 4: Verification
-1. Test the connection by fetching a basic profile or challenge list.
-2. Confirm success: "✅ Connection established with [Platform]!"
+### Passo 4: Verificação
+1. Teste a conexão buscando um perfil básico ou lista de desafios.
+2. Confirme o sucesso: "✅ Conexão estabelecida com o(a) [Plataforma]!"
 
 ---
 
-## Rules
-- **Never** display full tokens in the chat output.
-- **Explain** that the `.env` file is ignored by Git for security.
-- **Language** detection (PT-BR/EN) must be active.
+## Regras
+- **Nunca** exiba tokens completos na saída do chat.
+- **Explique** que o arquivo `.env` é ignorado pelo Git por segurança.
+- A detecção de **Idioma** (PT-BR/EN) deve estar ativa.

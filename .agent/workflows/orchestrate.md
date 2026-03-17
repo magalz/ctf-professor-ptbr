@@ -1,237 +1,236 @@
 ---
-description: Coordinate multiple agents for complex tasks. Use for multi-perspective analysis, comprehensive reviews, or tasks requiring different domain expertise.
+description: Coordene vários agentes para tarefas complexas. Use para análises multiperspectivas, revisões abrangentes ou tarefas que exigem diferentes conhecimentos de domínio.
 ---
 
-# Multi-Agent Orchestration
+# Orquestração Multi-Agente
 
-You are now in **ORCHESTRATION MODE**. Your task: coordinate specialized agents to solve this complex problem.
+Você agora está no **MODO DE ORQUESTRAÇÃO**. Sua tarefa: coordenar agentes especializados para resolver este problema complexo.
 
-## Task to Orchestrate
+## Tarefa para Orquestrar
 $ARGUMENTS
 
 ---
 
-## 🔴 CRITICAL: Minimum Agent Requirement
+## 🔴 CRÍTICO: Requisito Mínimo de Agentes
 
-> ⚠️ **ORCHESTRATION = MINIMUM 3 DIFFERENT AGENTS**
+> ⚠️ **ORQUESTRAÇÃO = MÍNIMO DE 3 AGENTES DIFERENTES**
 > 
-> If you use fewer than 3 agents, you are NOT orchestrating - you're just delegating.
+> Se você usar menos de 3 agentes, você NÃO está orquestrando - você está apenas delegando.
 > 
-> **Validation before completion:**
-> - Count invoked agents
-> - If `agent_count < 3` → STOP and invoke more agents
-> - Single agent = FAILURE of orchestration
+> **Validação antes da conclusão:**
+> - Conte os agentes invocados
+> - Se `agent_count < 3` → PARE e invoque mais agentes
+> - Único agente = FALHA de orquestração
 
-### Agent Selection Matrix
+### Matriz de Seleção de Agentes
 
-| Task Type | REQUIRED Agents (minimum) |
+| Tipo de Tarefa | Agentes NECESSÁRIOS (mínimo) |
 |-----------|---------------------------|
-| **Web App** | frontend-specialist, backend-specialist, test-engineer |
+| **App Web** | frontend-specialist, backend-specialist, test-engineer |
 | **API** | backend-specialist, security-auditor, test-engineer |
 | **UI/Design** | frontend-specialist, seo-specialist, performance-optimizer |
-| **Database** | database-architect, backend-specialist, security-auditor |
+| **Banco de Dados** | database-architect, backend-specialist, security-auditor |
 | **Full Stack** | project-planner, frontend-specialist, backend-specialist, devops-engineer |
 | **Debug** | debugger, explorer-agent, test-engineer |
-| **Security** | security-auditor, penetration-tester, devops-engineer |
+| **Segurança** | security-auditor, penetration-tester, devops-engineer |
 
 ---
 
-## Pre-Flight: Mode Check
+## Pré-Voo: Verificação de Modo
 
-| Current Mode | Task Type | Action |
+| Modo Atual | Tipo de Tarefa | Ação |
 |--------------|-----------|--------|
-| **plan** | Any | ✅ Proceed with planning-first approach |
-| **edit** | Simple execution | ✅ Proceed directly |
-| **edit** | Complex/multi-file | ⚠️ Ask: "This task requires planning. Switch to plan mode?" |
-| **ask** | Any | ⚠️ Ask: "Ready to orchestrate. Switch to edit or plan mode?" |
+| **plan** | Qualquer | ✅ Prossiga com a abordagem de planejamento primeiro |
+| **edit** | Execução simples | ✅ Prossiga diretamente |
+| **edit** | Complexo/múltiplos arquivos | ⚠️ Pergunte: "This task requires planning. Switch to plan mode?" |
+| **ask** | Qualquer | ⚠️ Pergunte: "Ready to orchestrate. Switch to edit or plan mode?" |
 
 ---
 
-## 🔴 STRICT 2-PHASE ORCHESTRATION
+## 🔴 ORQUESTRAÇÃO ESTRITA DE 2 FASES
 
-### PHASE 1: PLANNING (Sequential - NO parallel agents)
+### FASE 1: PLANEJAMENTO (Sequencial - SEM agentes paralelos)
 
-| Step | Agent | Action |
+| Passo | Agente | Ação |
 |------|-------|--------|
-| 1 | `project-planner` | Create docs/PLAN.md |
-| 2 | (optional) `explorer-agent` | Codebase discovery if needed |
+| 1 | `project-planner` | Criar docs/PLAN.md |
+| 2 | (opcional) `explorer-agent` | Descoberta da base de código, se necessário |
 
-> 🔴 **NO OTHER AGENTS during planning!** Only project-planner and explorer-agent.
+> 🔴 **NENHUM OUTRO AGENTE durante o planejamento!** Apenas project-planner e explorer-agent.
 
-### ⏸️ CHECKPOINT: User Approval
+### ⏸️ PONTO DE CONTROLE (CHECKPOINT): Aprovação do Usuário
 
 ```
-After PLAN.md is complete, ASK:
+Após a conclusão do PLAN.md, PERGUNTE:
 
-"✅ Plan created: docs/PLAN.md
+"✅ Plano criado: docs/PLAN.md
 
-Do you approve? (Y/N)
-- Y: Start implementation
-- N: I'll revise the plan"
+Você aprova? (Y/N)
+- Y: Iniciar implementação
+- N: Vou revisar o plano"
 ```
 
-> 🔴 **DO NOT proceed to Phase 2 without explicit user approval!**
+> 🔴 **NÃO prossiga para a Fase 2 sem a aprovação explícita do usuário!**
 
-### PHASE 2: IMPLEMENTATION (Parallel agents after approval)
+### FASE 2: IMPLEMENTAÇÃO (Agentes paralelos após aprovação)
 
-| Parallel Group | Agents |
+| Grupo Paralelo | Agentes |
 |----------------|--------|
-| Foundation | `database-architect`, `security-auditor` |
-| Core | `backend-specialist`, `frontend-specialist` |
-| Polish | `test-engineer`, `devops-engineer` |
+| Fundação | `database-architect`, `security-auditor` |
+| Núcleo | `backend-specialist`, `frontend-specialist` |
+| Polimento | `test-engineer`, `devops-engineer` |
 
-> ✅ After user approval, invoke multiple agents in PARALLEL.
+> ✅ Após a aprovação do usuário, invoque vários agentes em PARALELO.
 
-## Available Agents (17 total)
+## Agentes Disponíveis (17 no total)
 
-| Agent | Domain | Use When |
+| Agente | Domínio | Usar Quando |
 |-------|--------|----------|
-| `project-planner` | Planning | Task breakdown, PLAN.md |
-| `explorer-agent` | Discovery | Codebase mapping |
+| `project-planner` | Planejamento | Detalhamento de tarefas, PLAN.md |
+| `explorer-agent` | Descoberta | Mapeamento da base de código |
 | `frontend-specialist` | UI/UX | React, Vue, CSS, HTML |
-| `backend-specialist` | Server | API, Node.js, Python |
-| `database-architect` | Data | SQL, NoSQL, Schema |
-| `security-auditor` | Security | Vulnerabilities, Auth |
-| `penetration-tester` | Security | Active testing |
-| `test-engineer` | Testing | Unit, E2E, Coverage |
+| `backend-specialist` | Servidor | API, Node.js, Python |
+| `database-architect` | Dados | SQL, NoSQL, Schema |
+| `security-auditor` | Segurança | Vulnerabilidades, Autenticação |
+| `penetration-tester` | Segurança | Teste ativo |
+| `test-engineer` | Testes | Unidade, E2E, Cobertura |
 | `devops-engineer` | Ops | CI/CD, Docker, Deploy |
 | `mobile-developer` | Mobile | React Native, Flutter |
-| `performance-optimizer` | Speed | Lighthouse, Profiling |
+| `performance-optimizer` | Velocidade | Lighthouse, Profiling |
 | `seo-specialist` | SEO | Meta, Schema, Rankings |
-| `documentation-writer` | Docs | README, API docs |
-| `debugger` | Debug | Error analysis |
-| `game-developer` | Games | Unity, Godot |
-| `orchestrator` | Meta | Coordination |
+| `documentation-writer` | Docs | README, Docs de API |
+| `debugger` | Debug | Análise de erros |
+| `game-developer` | Jogos | Unity, Godot |
+| `orchestrator` | Meta | Coordenação |
 
 ---
 
-## Orchestration Protocol
+## Protocolo de Orquestração
 
-### Step 1: Analyze Task Domains
-Identify ALL domains this task touches:
+### Passo 1: Analisar Domínios da Tarefa
+Identifique TODOS os domínios que esta tarefa toca:
 ```
-□ Security     → security-auditor, penetration-tester
+□ Segurança    → security-auditor, penetration-tester
 □ Backend/API  → backend-specialist
 □ Frontend/UI  → frontend-specialist
-□ Database     → database-architect
-□ Testing      → test-engineer
+□ Banco Dados  → database-architect
+□ Testes       → test-engineer
 □ DevOps       → devops-engineer
 □ Mobile       → mobile-developer
 □ Performance  → performance-optimizer
 □ SEO          → seo-specialist
-□ Planning     → project-planner
+□ Planejamento → project-planner
 ```
 
-### Step 2: Phase Detection
+### Passo 2: Detecção de Fase
 
-| If Plan Exists | Action |
+| Se o Plano Existe | Ação |
 |----------------|--------|
-| NO `docs/PLAN.md` | → Go to PHASE 1 (planning only) |
-| YES `docs/PLAN.md` + user approved | → Go to PHASE 2 (implementation) |
+| NÃO `docs/PLAN.md` | → Vá para a FASE 1 (apenas planejamento) |
+| SIM `docs/PLAN.md` + aprovado pelo usuário | → Vá para a FASE 2 (implementação) |
 
-### Step 3: Execute Based on Phase
+### Passo 3: Executar Baseado na Fase
 
-**PHASE 1 (Planning):**
+**FASE 1 (Planejamento):**
 ```
-Use the project-planner agent to create PLAN.md
-→ STOP after plan is created
-→ ASK user for approval
-```
-
-**PHASE 2 (Implementation - after approval):**
-```
-Invoke agents in PARALLEL:
-Use the frontend-specialist agent to [task]
-Use the backend-specialist agent to [task]
-Use the test-engineer agent to [task]
+Use o agente project-planner para criar PLAN.md
+→ PARE após o plano ser criado
+→ PEÇA a aprovação do usuário
 ```
 
-**🔴 CRITICAL: Context Passing (MANDATORY)**
-
-When invoking ANY subagent, you MUST include:
-
-1. **Original User Request:** Full text of what user asked
-2. **Decisions Made:** All user answers to Socratic questions
-3. **Previous Agent Work:** Summary of what previous agents did
-4. **Current Plan State:** If plan files exist in workspace, include them
-
-**Example with FULL context:**
+**FASE 2 (Implementação - após aprovação):**
 ```
-Use the project-planner agent to create PLAN.md:
-
-**CONTEXT:**
-- User Request: "A social platform for students, using mock data"
-- Decisions: Tech=Vue 3, Layout=Grid Widgets, Auth=Mock, Design=Youthful & dynamic
-- Previous Work: Orchestrator asked 6 questions, user chose all options
-- Current Plan: playful-roaming-dream.md exists in workspace with initial structure
-
-**TASK:** Create detailed PLAN.md based on ABOVE decisions. Do NOT infer from folder name.
+Invoque agentes em PARALELO:
+Use o agente frontend-specialist para [tarefa]
+Use o agente backend-specialist para [tarefa]
+Use o agente test-engineer para [tarefa]
 ```
 
-> ⚠️ **VIOLATION:** Invoking subagent without full context = subagent will make wrong assumptions!
+**🔴 CRÍTICO: Passagem de Contexto (OBRIGATÓRIO)**
 
+Ao invocar QUALQUER subagente, você DEVE incluir:
 
-### Step 4: Verification (MANDATORY)
-The LAST agent must run appropriate verification scripts:
+1. **Pedido Original do Usuário:** Texto completo do que o usuário pediu
+2. **Decisões Tomadas:** Todas as respostas do usuário a perguntas socráticas
+3. **Trabalho Anterior do Agente:** Resumo do que os agentes anteriores fizeram
+4. **Estado Atual do Plano:** Se arquivos de plano existem no workspace, inclua-os
+
+**Exemplo com contexto COMPLETO:**
+```
+Use o agente project-planner para criar PLAN.md:
+
+**CONTEXTO:**
+- Pedido do Usuário: "Uma plataforma social para estudantes, usando dados mockados"
+- Decisões: Tech=Vue 3, Layout=Grid Widgets, Auth=Mock, Design=Jovem & dinâmico
+- Trabalho Anterior: Orchestrator fez 6 perguntas, usuário escolheu todas as opções
+- Plano Atual: playful-roaming-dream.md existe no workspace com estrutura inicial
+
+**TAREFA:** Crie um PLAN.md detalhado com base nas decisões ACIMA. NÃO deduza do nome da pasta.
+```
+
+> ⚠️ **VIOLAÇÃO:** Invocar subagente sem contexto completo = subagente fará suposições erradas!
+
+### Passo 4: Verificação (OBRIGATÓRIO)
+O ÚLTIMO agente deve executar os scripts de verificação apropriados:
 ```bash
 python .agent/skills/vulnerability-scanner/scripts/security_scan.py .
 python .agent/skills/lint-and-validate/scripts/lint_runner.py .
 ```
 
-### Step 5: Synthesize Results
-Combine all agent outputs into unified report.
+### Passo 5: Sintetizar Resultados
+Combine todas as saídas dos agentes em um relatório unificado.
 
 ---
 
-## Output Format
+## Formato de Saída
 
 ```markdown
-## 🎼 Orchestration Report
+## 🎼 Relatório de Orquestração
 
-### Task
-[Original task summary]
+### Tarefa
+[Resumo da tarefa original]
 
-### Mode
-[Current Antigravity Agent mode: plan/edit/ask]
+### Modo
+[Modo atual do Agente Antigravity: plan/edit/ask]
 
-### Agents Invoked (MINIMUM 3)
-| # | Agent | Focus Area | Status |
+### Agentes Invocados (MÍNIMO 3)
+| # | Agente | Área de Foco | Status |
 |---|-------|------------|--------|
-| 1 | project-planner | Task breakdown | ✅ |
-| 2 | frontend-specialist | UI implementation | ✅ |
-| 3 | test-engineer | Verification scripts | ✅ |
+| 1 | project-planner | Detalhamento de tarefas | ✅ |
+| 2 | frontend-specialist | Implementação de UI | ✅ |
+| 3 | test-engineer | Scripts de verificação | ✅ |
 
-### Verification Scripts Executed
+### Scripts de Verificação Executados
 - [x] security_scan.py → Pass/Fail
 - [x] lint_runner.py → Pass/Fail
 
-### Key Findings
-1. **[Agent 1]**: Finding
-2. **[Agent 2]**: Finding
-3. **[Agent 3]**: Finding
+### Principais Descobertas
+1. **[Agente 1]**: Descoberta
+2. **[Agente 2]**: Descoberta
+3. **[Agente 3]**: Descoberta
 
-### Deliverables
-- [ ] PLAN.md created
-- [ ] Code implemented
-- [ ] Tests passing
-- [ ] Scripts verified
+### Entregáveis
+- [ ] PLAN.md criado
+- [ ] Código implementado
+- [ ] Testes passando
+- [ ] Scripts verificados
 
-### Summary
-[One paragraph synthesis of all agent work]
+### Resumo
+[Síntese de um parágrafo de todo o trabalho do agente]
 ```
 
 ---
 
-## 🔴 EXIT GATE
+## 🔴 PORTÃO DE SAÍDA (EXIT GATE)
 
-Before completing orchestration, verify:
+Antes de concluir a orquestração, verifique:
 
-1. ✅ **Agent Count:** `invoked_agents >= 3`
-2. ✅ **Scripts Executed:** At least `security_scan.py` ran
-3. ✅ **Report Generated:** Orchestration Report with all agents listed
+1. ✅ **Contagem de Agentes:** `invoked_agents >= 3`
+2. ✅ **Scripts Executados:** Pelo menos `security_scan.py` rodou
+3. ✅ **Relatório Gerado:** Relatório de Orquestração com todos os agentes listados
 
-> **If any check fails → DO NOT mark orchestration complete. Invoke more agents or run scripts.**
+> **Se alguma verificação falhar → NÃO marque a orquestração como concluída. Invoque mais agentes ou rode scripts.**
 
 ---
 
-**Begin orchestration now. Select 3+ agents, execute sequentially, run verification scripts, synthesize results.**
+**Inicie a orquestração agora. Selecione 3+ agentes, execute sequencialmente, rode os scripts de verificação, sintetize os resultados.**

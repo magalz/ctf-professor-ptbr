@@ -1,73 +1,73 @@
 ---
-description: Configure the local environment, build the Docker sandbox, and install necessary dependencies. Run this after cloning the repository.
+description: Configura o ambiente local, constrói o sandbox Docker e instala dependências necessárias. Execute isso após clonar o repositório.
 ---
 
-# /install — Setup CTF Professor Environment
+# /install — Configurar o Ambiente do Professor CTF
 
 $ARGUMENTS
 
 ---
 
-## Task
+## Tarefa
 
-### Step 1: Environment Probe (OS & Dependencies)
+### Passo 1: Sonda de Ambiente (SO & Dependências)
 
-1. **Invoke** the `security-toolchain-manager` skill to probe the system.
-2. **Check for core requirements:**
-   - Docker (Required for sandbox)
-   - Python 3.8+ (Required for scripts)
-   - Git (Required for version control)
-3. **Language detection:** Detect the user's language (EN or PT-BR) and respond accordingly.
+1. **Invoque** a skill `security-toolchain-manager` para sondar o sistema.
+2. **Verifique os requisitos principais:**
+   - Docker (Necessário para o sandbox)
+   - Python 3.8+ (Necessário para scripts)
+   - Git (Necessário para controle de versão)
+3. **Detecção de idioma:** Detecte o idioma do usuário (EN ou PT-BR) e responda de acordo.
 
-### Step 2: Docker Sandbox Initialization
+### Passo 2: Inicialização do Sandbox Docker
 
-1. **Check** if the `cyber-ctf-kali` image exists.
-2. **If missing:** Build the image using `.agent/sandbox/Dockerfile`.
-   - Command: `docker build -t cyber-ctf-kali .agent/sandbox/`
-3. **Verify** image integrity and tool presence inside the container.
+1. **Verifique** se a imagem `cyber-ctf-kali` existe.
+2. **Se estiver faltando:** Construa a imagem usando `.agent/sandbox/Dockerfile`.
+   - Comando: `docker build -t cyber-ctf-kali .agent/sandbox/`
+3. **Verifique** a integridade da imagem e a presença de ferramentas dentro do contêiner.
 
-### Step 3: Python Dependency Setup
+### Passo 3: Configuração de Dependências Python
 
-1. **Check** for missing Python libraries used by the system:
-   - `mcp` / `fastmcp` (for the sandbox server)
-   - `pwntools` (recommended for Pwn challenges)
-   - `requests` (for Web challenges)
-2. **Offer** to install missing dependencies:
-   - Command: `pip install mcp fastmcp pwntools requests`
+1. **Verifique** se faltam bibliotecas Python usadas pelo sistema:
+   - `mcp` / `fastmcp` (para o servidor do sandbox)
+   - `pwntools` (recomendado para desafios de Pwn)
+   - `requests` (para desafios Web)
+2. **Ofereça** para instalar dependências ausentes:
+   - Comando: `pip install mcp fastmcp pwntools requests`
 
-### Step 4: System Verification
+### Passo 4: Verificação do Sistema
 
-1. **Run** the `.agent/scripts/verify_all.py` script (if applicable) or a subset of it to ensure the environment is ready.
-2. **Test** the `sandbox_manager.py` by starting and stopping the container.
+1. **Execute** o script `.agent/scripts/verify_all.py` (se aplicável) ou um subconjunto dele para garantir que o ambiente esteja pronto.
+2. **Teste** o `sandbox_manager.py` iniciando e parando o contêiner.
 
-### Step 5: Final Configuration
+### Passo 5: Configuração Final
 
-1. **Check** if `mcp_config.json` needs any local path updates.
+1. **Verifique** se `mcp_config.json` precisa de atualizações de caminho local.
 
-### Step 6: Local Toolchain (Host)
+### Passo 6: Ferramentas Locais (Host)
 
-1. **Verify** essential local text and hex editors (Notepad++, ImHex/HxD, CyberChef).
-2. **Suggest Installation:** If the user is missing them, the script will provide download links or `winget` commands.
-3. **Configure Editor:** Guide the user to set their default Gemini CLI editor (`EDITOR` env var).
-4. **Save State:** Record the installed tools in `.env` so agents can provide context-aware hints.
+1. **Verifique** editores de texto e hexadecimais locais essenciais (Notepad++, ImHex/HxD, CyberChef).
+2. **Sugira Instalação:** Se o usuário não os tiver, o script fornecerá links de download ou comandos `winget`.
+3. **Configure o Editor:** Guie o usuário para definir seu editor padrão do Gemini CLI (variável de ambiente `EDITOR`).
+4. **Salve o Estado:** Registre as ferramentas instaladas no `.env` para que os agentes possam fornecer dicas contextuais.
 
-### Step 7: CTF Platform Connection (Optional)
+### Passo 7: Conexão com Plataformas de CTF (Opcional)
 
-1. **Link** your CTF accounts to enable automated challenge intake and flag submission.
-2. **Select Platform:**
-   - **CTFd**: Requires Platform URL and Access Token.
-   - **HackTheBox**: Requires App Token (v4).
-   - **TryHackMe**: Requires Session Cookie (`connect.sid`).
-3. **Guidance:** The agent will provide step-by-step instructions on where to find these tokens for each platform.
-4. **Storage:** Credentials are saved securely in a local `.env` file (ignored by Git).
+1. **Vincule** suas contas de CTF para permitir a ingestão automatizada de desafios e submissão de flags.
+2. **Selecione a Plataforma:**
+   - **CTFd**: Requer URL da Plataforma e Token de Acesso.
+   - **HackTheBox**: Requer Token de Aplicativo (v4).
+   - **TryHackMe**: Requer Cookie de Sessão (`connect.sid`).
+3. **Orientação:** O agente fornecerá instruções passo a passo sobre onde encontrar esses tokens para cada plataforma.
+4. **Armazenamento:** As credenciais são salvas de forma segura em um arquivo `.env` local (ignorado pelo Git).
 
-### Step 8: Completion
+### Passo 8: Conclusão
 
-1. **Confirm** that the user is ready to start their first CTF session with `/start-ctf`.
+1. **Confirme** que o usuário está pronto para iniciar sua primeira sessão de CTF com `/start-ctf`.
 
 ---
 
-## Usage Examples
+## Exemplos de Uso
 
 ```
 /install
@@ -77,8 +77,8 @@ $ARGUMENTS
 
 ---
 
-## Rules
+## Regras
 
-- **Transparency:** Always explain what a command does before executing it (especially `docker build` and `pip install`).
-- **Safety:** Do not force installations without user consent.
-- **Bilingual:** Provide all status messages and prompts in the detected language.
+- **Transparência:** Sempre explique o que um comando faz antes de executá-lo (especialmente `docker build` e `pip install`).
+- **Segurança:** Não force instalações sem o consentimento do usuário.
+- **Bilíngue:** Forneça todas as mensagens de status e prompts no idioma detectado.

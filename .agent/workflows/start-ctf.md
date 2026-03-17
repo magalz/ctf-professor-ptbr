@@ -1,100 +1,100 @@
 ---
-description: Start new CTF challenge resolution. Supports flexible input (text + files, image + files, or bare). Always invokes the challenge-classifier agent before starting the Learning Cycle.
+description: Inicia a resolução de um novo desafio de CTF. Suporta entrada flexível (texto + arquivos, imagem + arquivos, ou direto). Sempre invoca o agente challenge-classifier antes de iniciar o Ciclo de Aprendizado.
 ---
 
-# /start-ctf — Start CTF Resolution
+# /start-ctf — Iniciar Resolução de CTF
 
 $ARGUMENTS
 
 ---
 
-## Input Modes
+## Modos de Entrada
 
-This workflow supports four input modes. Detect automatically which mode was used:
+Este fluxo de trabalho suporta quatro modos de entrada. Detecte automaticamente qual modo foi usado:
 
-| Mode | Example | What to do |
+| Modo | Exemplo | O que fazer |
 |:---|:---|:---|
-| **Bare** | `/start-ctf` | Ask the user to describe the challenge and/or attach files |
-| **Local Folder** | `/start-ctf CTF1` | Check `CTFs/CTF1/` for artifacts and description |
-| **URL** | `/start-ctf https://ctfd.example.com/...` | Fetch metadata and download files from CTF platforms |
-| **Text + files** | `/start-ctf SQL injection challenge...` + attached files | Extract description, inventory attached files |
-| **Image + files** | `/start-ctf` + screenshot + attached files | Read screenshot for description, inventory attached files |
+| **Direto (Bare)** | `/start-ctf` | Peça ao usuário para descrever o desafio e/ou anexar arquivos |
+| **Pasta Local** | `/start-ctf CTF1` | Verifique `CTFs/CTF1/` em busca de artefatos e descrição |
+| **URL** | `/start-ctf https://ctfd.example.com/...` | Busque metadados e baixe arquivos de plataformas de CTF |
+| **Texto + arquivos** | `/start-ctf desafio de injeção SQL...` + arquivos anexados | Extraia a descrição, inventarie os arquivos anexados |
+| **Imagem + arquivos** | `/start-ctf` + print da tela + arquivos anexados | Leia a imagem para obter a descrição, inventarie os arquivos anexados |
 
 ---
 
-## Task
+## Tarefa
 
-### Step 0: Intake (ALL modes)
+### Passo 0: Ingestão (TODOS os modos)
 
-1. **Collect inputs:** Identify everything available — text description, attached files, images.
-2. **Local Folder Detection:** If the argument matches a folder in `CTFs/`:
-   - **Invoke** `.agent/scripts/ingest_local.py`.
-   - **Load** description and artifact list.
-   - **Initialization:** Create a `notes.md` file in the folder (if missing) to track progress.
-   - **Inform** the user: "Detected local CTF folder. Ingesting artifacts and initializing notes.md..."
-3. **URL Detection & Automated Intake:** If the user provides a URL (CTFd, HackTheBox, TryHackMe):
-   - **Invoke** the `ctf-platform-bridge` skill.
-   - **Fetch** challenge details via `platform_client.py`.
-   - **Download** all attachments directly to the sandbox workspace.
-   - **Inform** the user: "Detected [Platform] URL. Fetching challenge details and files..."
-4. **If bare mode:** Ask the user to provide at minimum: a description, a file, or a screenshot.
-5. **Language detection:** Detect the user's language (EN or PT-BR).
+1. **Colete os inputs:** Identifique tudo o que estiver disponível — descrição em texto, arquivos anexados, imagens.
+2. **Detecção de Pasta Local:** Se o argumento corresponder a uma pasta em `CTFs/`:
+   - **Invoque** `.agent/scripts/ingest_local.py`.
+   - **Carregue** a descrição e a lista de artefatos.
+   - **Inicialização:** Crie um arquivo `notes.md` na pasta (se não existir) para acompanhar o progresso.
+   - **Informe** o usuário: "Pasta de CTF local detectada. Ingerindo artefatos e inicializando notes.md..."
+3. **Detecção de URL e Ingestão Automatizada:** Se o usuário fornecer uma URL (CTFd, HackTheBox, TryHackMe):
+   - **Invoque** a skill `ctf-platform-bridge`.
+   - **Busque** os detalhes do desafio via `platform_client.py`.
+   - **Baixe** todos os anexos diretamente para o workspace do sandbox.
+   - **Informe** o usuário: "URL do(a) [Plataforma] detectada. Buscando detalhes e arquivos do desafio..."
+4. **Se for modo direto:** Peça ao usuário para fornecer no mínimo: uma descrição, um arquivo ou um print de tela.
+5. **Detecção de idioma:** Detecte o idioma do usuário (EN ou PT-BR).
 
-### Step 1: Classification (MANDATORY — never skip)
+### Passo 1: Classificação (OBRIGATÓRIO — nunca pule)
 
-1. **Invoke** the `challenge-classifier` agent with all collected inputs.
-2. **Present** the classification block to the user (CTF Type / Category / Class / Difficulty / Artifacts / Hypothesis / Confidence).
-3. **Ask for confirmation:** "Does this classification look correct?" / "Essa classificação está correta?"
-4. **Wait** for user confirmation before proceeding. If the user corrects, update and re-present.
+1. **Invoque** o agente `challenge-classifier` com todos os inputs coletados.
+2. **Apresente** o bloco de classificação ao usuário (Tipo de CTF / Categoria / Classe / Dificuldade / Artefatos / Hipótese / Confiança).
+3. **Peça confirmação:** "Does this classification look correct?" / "Essa classificação está correta?"
+4. **Aguarde** a confirmação do usuário antes de prosseguir. Se o usuário corrigir, atualize e apresente novamente.
 
-### Step 2: Scenario Analysis & Triage
+### Passo 2: Análise de Cenário e Triagem
 
-- Orchestrate with `ctf-triage-methodology` skill.
-- Use the classification from Step 1 to focus the analysis on the correct domain.
-- Run `safe_extract.sh` or equivalent static analysis if a file was provided.
-- Formulate initial hypotheses without executing any dynamic payloads.
-- **Pedagogical Action:** Explain the reasoning behind each observation.
+- Orquestre com a skill `ctf-triage-methodology`.
+- Use a classificação do Passo 1 para focar a análise no domínio correto.
+- Execute `safe_extract.sh` ou análise estática equivalente se um arquivo foi fornecido.
+- Formule hipóteses iniciais sem executar payloads dinâmicos.
+- **Ação Pedagógica:** Explique o raciocínio por trás de cada observação.
 
-### Step 3: Environment & Toolchain Preparation
+### Passo 3: Preparação do Ambiente e Ferramentas
 
-- Orchestrate with `security-toolchain-manager` skill.
-- Determine required tools for the identified challenge category.
-- Guide the user through the Interactive Installation Protocol if dependencies are missing. Explain the purpose of each tool.
+- Orquestre com a skill `security-toolchain-manager`.
+- Determine as ferramentas necessárias para a categoria do desafio identificado.
+- Guie o usuário pelo Protocolo de Instalação Interativa se faltarem dependências. Explique o propósito de cada ferramenta.
 
-### Step 4: Theoretical Foundation & Controlled Exploitation
+### Passo 4: Base Teórica e Exploração Controlada
 
-- Orchestrate with `controlled-execution-framework` skill.
-- Enforce the Pedagogical Gate: Explain the vulnerability theory before building the payload.
-- Use the `exploit_scaffold.py` structure when applicable.
-- Require the user to predict the outcome before executing the exploit.
-- Perform Socratic Debugging if the exploit fails.
+- Orquestre com a skill `controlled-execution-framework`.
+- Reforce o "Pedagogical Gate": Explique a teoria da vulnerabilidade antes de construir o payload.
+- Use a estrutura `exploit_scaffold.py` quando aplicável.
+- Exija que o usuário preveja o resultado antes de executar o exploit.
+- Realize "Socratic Debugging" se o exploit falhar.
 
-### Step 5: Review & Mitigation (Upon Flag Capture)
+### Passo 5: Revisão e Mitigação (Após Capturar a Flag)
 
-- Orchestrate with `ctf-writeup-architect` skill.
-- **Present the Flag**: Explicitly show the captured flag to the user.
-- **Submission**: Instruct the user to submit it on the CTF platform (or offer to do it via `platform_client.py` if configured).
-- **Next Step**: Explicitly suggest running `/writeup [Folder_Name]` to generate a professional report of the session, detailing real-world enterprise impact and mitigation strategies.
+- Orquestre com a skill `ctf-writeup-architect`.
+- **Apresente a Flag**: Mostre explicitamente a flag capturada ao usuário.
+- **Submissão**: Instrua o usuário a enviá-la na plataforma de CTF (ou ofereça para fazer isso via `platform_client.py` se configurado).
+- **Próximo Passo**: Sugira explicitamente executar `/writeup [Nome_da_Pasta]` para gerar um relatório profissional da sessão, detalhando o impacto corporativo e estratégias de mitigação.
 
 ---
 
-## Usage Examples
+## Exemplos de Uso
 
 ```
 /start-ctf
-/start-ctf SQL injection on a login form + attached source.php
-/start-ctf Desafio de criptografia RSA com chave fraca + attached pubkey.pem
-/start-ctf [screenshot of CTFd challenge page] + attached binary
+/start-ctf injeção sql em formulário de login + source.php anexado
+/start-ctf Desafio de criptografia RSA com chave fraca + pubkey.pem anexado
+/start-ctf [print da tela do CTFd] + binário anexado
 /start-ctf web http://10.10.10.10
-/start-ctf pwn vulnerable_binary
-/start-ctf pcap capture.pcapng
+/start-ctf pwn executavel_vulneravel
+/start-ctf pcap captura.pcapng
 ```
 
 ---
 
-## Rules
+## Regras
 
-- **Never skip Step 1 (Classification).** Even if the user provides the category explicitly, run the classifier to confirm and enrich.
-- **Never proceed to Step 3 until Step 2 is fully resolved.**
-- **The professor controls pacing.** If the student rushes, enforce the Socratic Gate.
-- **Language follows the user.** If they switched to English mid-session, continue in English.
+- **Nunca pule o Passo 1 (Classificação).** Mesmo se o usuário fornecer a categoria explicitamente, rode o classificador para confirmar e enriquecer.
+- **Nunca prossiga para o Passo 3 até que o Passo 2 esteja resolvido.**
+- **O professor controla o ritmo.** Se o aluno se apressar, imponha o "Socratic Gate".
+- **O idioma segue o usuário.** Se eles mudarem para o inglês no meio da sessão, continue em inglês.

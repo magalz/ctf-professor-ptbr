@@ -1,46 +1,46 @@
 ---
-description: Request a calibrated hint for the current CTF challenge without receiving the answer. Uses the 3-tier progressive hint system.
+description: Solicite uma dica calibrada para o desafio de CTF atual sem receber a resposta direta. Usa o sistema de dicas progressivas de 3 níveis.
 ---
 
-# /hint — Request a Hint
+# /hint — Solicitar uma Dica
 
 $ARGUMENTS
 
 ---
 
-## Task
+## Tarefa
 
-This command produces a calibrated, progressive hint based on the current challenge context.
+Este comando produz uma dica calibrada e progressiva baseada no contexto atual do desafio.
 
-### Steps:
+### Passos:
 
-1. **Context Check**: Identify the current challenge category and what the student has already tried.
-   - If no CTF session is active, respond: "No active CTF session. Use /start-ctf first." / "Nenhuma sessão CTF ativa. Use /start-ctf primeiro."
+1. **Verificação de Contexto**: Identifique a categoria atual do desafio e o que o aluno já tentou.
+   - Se nenhuma sessão de CTF estiver ativa, responda: "No active CTF session. Use /start-ctf first." / "Nenhuma sessão CTF ativa. Use /start-ctf primeiro."
 
-2. **Determine Tier**: Check which hint tier the student is on:
-   - **First `/hint`** → Deliver Tier 1 (Conceptual Direction)
-   - **Second `/hint`** → Enforce gate: ask what they tried → If evidence shown, deliver Tier 2 (Tool + Technique)
-   - **Third `/hint`** → Enforce gate: ask for tool output → If shown, deliver Tier 3 (Specific Step)
-   - **Beyond Tier 3** → Re-evaluate classification or suggest a different approach
+2. **Determinar Nível (Tier)**: Verifique em qual nível de dica o aluno está:
+   - **Primeiro `/hint`** → Entregue Nível 1 (Direção Conceitual)
+   - **Segundo `/hint`** → Imponha "gate": pergunte o que eles tentaram → Se mostrarem evidências, entregue Nível 2 (Ferramenta + Técnica)
+   - **Terceiro `/hint`** → Imponha "gate": peça a saída da ferramenta → Se mostrada, entregue Nível 3 (Passo Específico)
+   - **Além do Nível 3** → Reavalie a classificação ou sugira uma abordagem diferente
 
-3. **Deliver Hint**: Use the `hint-generation-engine` skill to generate the hint in the detected language.
+3. **Entregar Dica**: Use a skill `hint-generation-engine` para gerar a dica no idioma detectado.
 
-4. **Gate Check**: After delivering the hint, prompt the student to act on it before providing more help.
+4. **Verificação (Gate Check)**: Após entregar a dica, incentive o aluno a agir sobre ela antes de fornecer mais ajuda.
 
 ---
 
-## Usage Examples
+## Exemplos de Uso
 
 ```
 /hint
 /hint estou travado na parte de criptografia
-/hint I can't figure out the vulnerability type
+/hint não consigo descobrir o tipo de vulnerabilidade
 ```
 
 ---
 
-## Rules
+## Regras
 
-- **Never provide the flag or full exploit code via hints.**
-- **Always check what the student already tried before escalating.**
-- **Language follows the user's input language.**
+- **Nunca forneça a flag ou o código completo do exploit através das dicas.**
+- **Sempre verifique o que o aluno já tentou antes de escalar o nível.**
+- **O idioma segue o idioma de entrada do usuário.**

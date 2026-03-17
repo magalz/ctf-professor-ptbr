@@ -1,31 +1,32 @@
 ---
-description: List all local CTF challenges stored in the CTFs/ directory.
+description: Lista todos os desafios de CTF locais armazenados no diretório CTFs/.
 ---
 
-# /list-ctf — Manage Local Challenges
+# /list-ctf — Gerenciar Desafios Locais
 
 $ARGUMENTS
 
 ---
 
-## Task
+## Tarefa
 
-### Step 1: Scan CTFs Directory
-1. **Invoke** `.agent/scripts/list_ctfs.py`.
-2. **Display** a table of challenges found in `CTFs/`.
+### Passo 1: Escanear o Diretório CTFs
+1. **Invoque** `.agent/scripts/list_ctfs.py`.
+2. **Exiba** uma tabela dos desafios encontrados em `CTFs/`.
 
-### Step 2: Analysis
-For each folder, show:
-- **Name**: The subfolder name.
-- **Artifacts**: Total number of files.
+### Passo 2: Análise
+Para cada pasta, mostre:
+- **Nome**: O nome da subpasta.
+- **Artefatos**: Número total de arquivos.
 - **Status**: 
-    - `🆕 New`: Just files, no notes.
-    - `⏳ In Progress`: Contains a `notes.md` file.
-    - `🏁 Solved`: Contains a file with "flag" in the name.
+    - `🆕 Novo`: Apenas arquivos, sem anotações (notes).
+    - `⏳ Em Progresso`: Contém um arquivo `notes.md`.
+    - `🏁 Resolvido`: Contém um arquivo com "flag" no nome.
+- **Flag**: A flag encontrada (se o desafio estiver resolvido).
 
 ---
 
-## Usage Examples
+## Exemplos de Uso
 
 ```
 /list-ctf
@@ -33,6 +34,6 @@ For each folder, show:
 
 ---
 
-## Rules
-- **Formatting**: Present the list in a clean, readable table format.
-- **Empty State**: If the directory is empty, encourage the user to create their first folder.
+## Regras
+- **Formatação**: Apresente a lista em um formato de tabela limpo e legível.
+- **Estado Vazio**: Se o diretório estiver vazio, encoraje o usuário a criar sua primeira pasta.

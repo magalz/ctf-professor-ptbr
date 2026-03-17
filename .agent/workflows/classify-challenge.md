@@ -1,44 +1,44 @@
 ---
-description: Run the challenge classification pipeline without starting the full solving cycle. Useful for quick triage or self-assessment.
+description: Executa o pipeline de classificação de desafios sem iniciar o ciclo completo de resolução. Útil para triagem rápida ou autoavaliação.
 ---
 
-# /classify-challenge — Classify a CTF Challenge
+# /classify-challenge — Classificar um Desafio de CTF
 
 $ARGUMENTS
 
 ---
 
-## Task
+## Tarefa
 
-This command runs the classification pipeline on a challenge independently. It does NOT start the full Learning Cycle.
+Este comando executa o pipeline de classificação em um desafio de forma independente. Ele NÃO inicia o Ciclo de Aprendizado completo.
 
-### Steps:
+### Passos:
 
-1. **Intake**: Collect all provided inputs (description, files, screenshots).
-   - If no inputs provided, ask the user: "Descreva o desafio ou anexe os arquivos." / "Describe the challenge or attach the files."
+1. **Ingestão**: Colete todos os inputs fornecidos (descrição, arquivos, capturas de tela).
+   - Se nenhum input for fornecido, pergunte ao usuário: "Describe the challenge or attach the files." / "Descreva o desafio ou anexe os arquivos."
 
-2. **Classify**: Invoke the `challenge-classifier` agent.
-   - Analyze text, files (magic bytes, extensions), and images (visible text).
-   - Produce the 3-tier classification block (CTF Type / Category / Class / Difficulty / Artifacts / Hypothesis / Confidence).
+2. **Classificar**: Invoque o agente `challenge-classifier`.
+   - Analise texto, arquivos (magic bytes, extensões) e imagens (texto visível).
+   - Produza o bloco de classificação de 3 níveis (Tipo de CTF / Categoria / Classe / Dificuldade / Artefatos / Hipótese / Confiança).
 
-3. **Present**: Display the classification block to the user.
+3. **Apresentar**: Exiba o bloco de classificação para o usuário.
 
-4. **Stop**: Do NOT proceed to triage or exploitation. If the user wants to continue, suggest using `/start-ctf`.
+4. **Parar**: NÃO prossiga para a triagem ou exploração. Se o usuário quiser continuar, sugira o uso de `/start-ctf`.
 
 ---
 
-## Usage Examples
+## Exemplos de Uso
 
 ```
 /classify-challenge
-/classify-challenge File attached: mysterious.bin
+/classify-challenge Arquivo anexado: misterioso.bin
 /classify-challenge Desafio de 200 pontos, categoria não informada
-/classify-challenge [screenshot of challenge page]
+/classify-challenge [print da página do desafio]
 ```
 
 ---
 
-## Rules
+## Regras
 
-- **Classification only.** This workflow does not trigger the Learning Cycle.
-- **Language follows the user.**
+- **Apenas classificação.** Este workflow não aciona o Ciclo de Aprendizado.
+- **O idioma segue o usuário.**
