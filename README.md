@@ -43,6 +43,8 @@ O modo recomendado de usar o CTF Professor é criando uma pasta para o seu desaf
 /start-ctf meu-pwn
 ```
 
+**Dica de Organização:** Use o comando `/list-ctf` a qualquer momento no terminal para ver todos os seus desafios locais, a quantidade de arquivos em cada um e o status de resolução.
+
 ---
 
 ## 🔥 Por que usar no Terminal (Gemini CLI)?
