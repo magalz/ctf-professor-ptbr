@@ -63,7 +63,15 @@ Para guias detalhados, arquitetura técnica e manuais de uso, visite nossa **Wik
 
 ---
 
-## 🤝 Créditos e Licença
+## 🤝 Créditos e Referências
 
-- Baseado no framework de agentes do **Gemini CLI**.
-- Licença MIT - Sinta-se livre para usar, aprender e contribuir!
+O **CTF Professor** foi construído utilizando como base e inspiração os seguintes projetos:
+
+- [vudovn/antigravity-kit](https://github.com/vudovn/antigravity-kit) - Framework base de agentes e workflows.
+- [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills) - Repositório original de habilidades (skills).
+
+---
+
+## 📄 Licença
+
+Licença MIT - Sinta-se livre para usar, aprender e contribuir!
