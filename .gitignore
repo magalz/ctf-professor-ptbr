@@ -44,6 +44,7 @@ apps/web-app/public/skills.json
 .env
 .env.local
 .env.*
+mcp_config.json
 
 # Local Challenge Workspace
 # We ignore everything inside CTFs/ to prevent leaking challenge binaries, 
